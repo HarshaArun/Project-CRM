@@ -7,6 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import Utilities.PageUtility;
+import Utilities.WaitUtility;
 
 public class QALegendTimeCardsPage {
 
@@ -20,7 +21,7 @@ public class QALegendTimeCardsPage {
 	@FindBy(xpath = "//a[@class='btn btn-default']")
 	WebElement addTimeManuallyField;
 	
-	@FindBy(xpath = "(//div[@class='select2-search'])[7]")
+	@FindBy(xpath = "(//a[@class='select2-choice'])[3]")
 	WebElement timeCardsTeamMemberField;
 	
 	@FindBy(xpath = "(//span[text()='Saumia Alex '])")
@@ -44,11 +45,14 @@ public class QALegendTimeCardsPage {
 		
 		public void onClickTimeCardsTeamMember()
 		 {
-			 PageUtility.clickOnElement(timeCardsTeamMemberField);
+			WaitUtility.waitForAnElementToBeClickable(driver,timeCardsTeamMemberField);
+		//	 PageUtility.clickOnElement(timeCardsTeamMemberField);
+			PageUtility.clickUsingJavaScript(timeCardsTeamMemberField, driver);
 		 }
 		
 		public void onClickTimeCardsMember()
 		 {
 			 PageUtility.clickOnElement(timeCardsMemberField);
+			 
 		 }
 }

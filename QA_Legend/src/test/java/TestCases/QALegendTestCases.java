@@ -21,6 +21,7 @@ import PageClasses.QALegend_Items;
 import PageClasses.QALegend_Loginpage;
 import PageClasses.QALegend_NotesPage;
 import PageClasses.QALegend_ProjectsPage;
+import PageClasses.QALegend_TeamMembers;
 import Utilities.ExcelUtilities;
 import Utilities.FakerUtility;
 
@@ -37,6 +38,7 @@ public class QALegendTestCases  extends BaseClass{
   QALegend_Items itemspage;
   QALegendTimeCardsPage timecardspage;
   QALegend_FinancePage financepage;
+  QALegend_TeamMembers teammembers;
  
   
   @BeforeMethod
@@ -44,7 +46,7 @@ public class QALegendTestCases  extends BaseClass{
   public void initilization(String browser) throws Exception
   {
 	 driver= browserInitilization(browser);
-	 fis=new FileInputStream("C:\\Users\\Arun\\eclipse-workspace\\QA_Legend\\src\\main\\java\\TestData\\testdata.properties");
+	 fis=new FileInputStream(System.getProperty("user.dir")+"\\src\\main\\java\\TestData\\testdata.properties");
 	 prop=new Properties();
 	 prop.load(fis);
 	 driver.get(prop.getProperty("url"));
@@ -56,6 +58,7 @@ public class QALegendTestCases  extends BaseClass{
 	 itemspage= new QALegend_Items(driver);
 	 timecardspage= new QALegendTimeCardsPage(driver);
 	 financepage= new QALegend_FinancePage(driver);
+	 teammembers=new QALegend_TeamMembers(driver);
 	 
 	 loginpage.enterUserName(prop.getProperty("username"));
 	  loginpage.enterPassword(prop.getProperty("password"));
@@ -108,7 +111,7 @@ public class QALegendTestCases  extends BaseClass{
   }
  
   
-// @Test
+ @Test
  public void addProjects() throws IOException
  {
 	 projectspage.onClickProjects();
@@ -126,7 +129,7 @@ public class QALegendTestCases  extends BaseClass{
 	
  }
  
-// @Test
+ //@Test
  	public void applyLeave() throws IOException
  	{
 	 leavepage.onClickLeavePage();
@@ -143,16 +146,12 @@ public class QALegendTestCases  extends BaseClass{
  	}
  	
  	
-// @Test
- public void assignLeave()
-	{
-	 leavepage.onClickLeavePage(); 
-	 leavepage.onClickAssignLeavePage();
-	}
+
  
 // @Test
  public void addItems() throws IOException
  {
+	 
 	 itemspage.onClickItemsPage();
 	 itemspage.onClickAddItem();
 	 String item_title= ExcelUtilities.getString(4, 2, excelFilePath, "Notes") + FakerUtility.randomNumberCreation();
@@ -164,10 +163,11 @@ public class QALegendTestCases  extends BaseClass{
 	 String item_rate= ExcelUtilities.getNumeric(4, 5, excelFilePath, "Notes") ;
 	 itemspage.inputItemRate(item_rate);
 	 itemspage.onClickSaveAddItem();
+	 
  }
  
  
- //@Test
+// @Test
  public void addTimeManually()
  {
 	 timecardspage.onClickTimeCards();
@@ -176,12 +176,49 @@ public class QALegendTestCases  extends BaseClass{
 	// timecardspage.onClickTimeCardsMember();
  }
  
- @Test
- public void addExpenseInFinance()
+// @Test
+ public void addExpenseInFinance() throws IOException
  {
 	 financepage.onClickFinancePage();
 	 financepage.onClickExpensePage();
 	 financepage.onClickAddExpensePage();
 	 financepage.onClickExpenseCategory();
+	 String finance_amount=ExcelUtilities.getNumeric(13, 2, excelFilePath, "Notes");
+	  financepage.inputExpenseAmount(finance_amount);
+	String finance_title=ExcelUtilities.getString(13, 0, excelFilePath, "Notes") +FakerUtility.randomNumberCreation();
+	  financepage.inputExpenseTitle(finance_title);
+	  String finance_description=ExcelUtilities.getString(13, 1, excelFilePath, "Notes");
+	  financepage.inputExpenseDescription(finance_description);
+//	 financepage.onClickExpenseTax();
+//	 financepage.onClickExpenseTaxFromSelect();
+	  financepage.onClickSaveExpense();
+ }
+ 
+// @Test
+ public void addTeamMember() throws IOException
+ {
+	 teammembers.onClickTeamMembersPage();
+	 teammembers.onClickAddMember();
+	 String member_firstname= ExcelUtilities.getString(7, 0, excelFilePath, "Notes") ;
+	 teammembers.inputMemberFirstName(member_firstname);
+	 String member_lastname= ExcelUtilities.getString(7, 1, excelFilePath, "Notes") ;
+	 teammembers.inputMemberLastName(member_lastname);
+	 String member_address= ExcelUtilities.getString(7, 2, excelFilePath, "Notes") ;
+	 teammembers.inputMemberEmailAddress(member_address);
+	 String member_phonenumber= ExcelUtilities.getNumeric(7, 3, excelFilePath, "Notes") ;
+	 teammembers.inputMemeberPhoneNum(member_phonenumber);
+	 teammembers.onClickaddMemberNext();
+	 String member_jobtitle= ExcelUtilities.getString(10, 0, excelFilePath, "Notes") ;
+	 teammembers.inputMemberJobTitle(member_jobtitle);
+	 String member_salary= ExcelUtilities.getNumeric(10, 1, excelFilePath, "Notes") ;
+	 teammembers.inputMemberSalary(member_salary);
+	 String member_salaryterm= ExcelUtilities.getString(10, 2, excelFilePath, "Notes") ;
+	 teammembers.inputmemberSalaryTerm(member_salaryterm);
+	 teammembers.onClickaddMemberNextButton();
+	 String member_emailid= ExcelUtilities.getString(10, 3, excelFilePath, "Notes") ;
+	 teammembers.inputMemberEmailId(member_emailid);
+	 String member_password= ExcelUtilities.getString(10, 4, excelFilePath, "Notes") ;
+	 teammembers.inputMemberPassword(member_password);
+	 teammembers.onClickSaveMember();
  }
 }

@@ -33,6 +33,9 @@ public class QALegend_Items {
 	 @FindBy(xpath  = "//button[text()=' Save']")
 	 WebElement saveItemField;
 	 
+	 @FindBy(xpath = "//tbody//tr//td[@class=' w20p' and text()='Samsung897']")
+	 WebElement displaySavedItem;
+	 
 	public QALegend_Items(WebDriver driver) {
 		// TODO Auto-generated constructor stub
 		this.driver=driver;
@@ -72,6 +75,11 @@ public class QALegend_Items {
 		PageUtility.enterText(ItemRateField,rate);
 		
 	}
+   
+   public boolean valueDisplay()
+   {
+	   return displaySavedItem.isDisplayed();
+   }
    
    public void onClickSaveAddItem()
 	{

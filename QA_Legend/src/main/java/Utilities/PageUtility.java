@@ -50,7 +50,13 @@ public class PageUtility {
 		Actions actions= new Actions(driver);
 		actions.contextClick().build().perform();
 	}
-
+	
+	public static void enterTextUsingActions(WebDriver driver, WebElement element, String value)
+	{
+		Actions actions= new Actions(driver);
+		actions.sendKeys(element, value).build().perform();
+		
+	}
 	
 public static void scrollToElement(WebElement element ,WebDriver driver) {
 		
