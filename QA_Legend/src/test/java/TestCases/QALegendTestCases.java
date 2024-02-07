@@ -22,6 +22,7 @@ import PageClasses.QALegend_Loginpage;
 import PageClasses.QALegend_NotesPage;
 import PageClasses.QALegend_ProjectsPage;
 import PageClasses.QALegend_TeamMembers;
+import PageClasses.QALegend_TicketsPage;
 import Utilities.ExcelUtilities;
 import Utilities.FakerUtility;
 
@@ -39,7 +40,7 @@ public class QALegendTestCases  extends BaseClass{
   QALegendTimeCardsPage timecardspage;
   QALegend_FinancePage financepage;
   QALegend_TeamMembers teammembers;
- 
+  QALegend_TicketsPage ticketspage;
   
   @BeforeMethod
   @Parameters({"Browser"})
@@ -59,10 +60,11 @@ public class QALegendTestCases  extends BaseClass{
 	 timecardspage= new QALegendTimeCardsPage(driver);
 	 financepage= new QALegend_FinancePage(driver);
 	 teammembers=new QALegend_TeamMembers(driver);
+	 ticketspage=new QALegend_TicketsPage(driver);
 	 
 	 loginpage.enterUserName(prop.getProperty("username"));
-	  loginpage.enterPassword(prop.getProperty("password"));
-	  loginpage.onClickLogin();
+	 loginpage.enterPassword(prop.getProperty("password"));
+	 loginpage.onClickLogin();
 	  
 	   }
   
@@ -111,7 +113,7 @@ public class QALegendTestCases  extends BaseClass{
   }
  
   
- @Test
+// @Test
  public void addProjects() throws IOException
  {
 	 projectspage.onClickProjects();
@@ -167,13 +169,26 @@ public class QALegendTestCases  extends BaseClass{
  }
  
  
-// @Test
- public void addTimeManually()
+ @Test
+ public void addTimeManually() throws IOException
  {
 	 timecardspage.onClickTimeCards();
 	 timecardspage.onClickAddTimeManually();
 	 timecardspage.onClickTimeCardsTeamMember();
-	// timecardspage.onClickTimeCardsMember();
+	 timecardspage.onClickInDate();
+	 timecardspage.onClickInCalendar();
+	 timecardspage.onClickOutDate();
+	 timecardspage.onClickOutCalendar();
+//	 timecardspage.onClickSelectOutDate();
+	 
+	 timecardspage.onClickInTime();
+//	 timecardspage.clearInTime();
+	 String timecard_intime=ExcelUtilities.getString(16, 0,excelFilePath, "Notes");
+	 timecardspage.inputInTime(timecard_intime);
+	 timecardspage.onClickOutTime();
+	 String timecard_outtime=ExcelUtilities.getString(16, 2,excelFilePath, "Notes");
+	 timecardspage.inputOutTime(timecard_outtime);
+//	 timecardspage.onClickSaveAddTime();
  }
  
 // @Test
@@ -183,9 +198,9 @@ public class QALegendTestCases  extends BaseClass{
 	 financepage.onClickExpensePage();
 	 financepage.onClickAddExpensePage();
 	 financepage.onClickExpenseCategory();
-	 String finance_amount=ExcelUtilities.getNumeric(13, 2, excelFilePath, "Notes");
+	  String finance_amount=ExcelUtilities.getNumeric(13, 2, excelFilePath, "Notes");
 	  financepage.inputExpenseAmount(finance_amount);
-	String finance_title=ExcelUtilities.getString(13, 0, excelFilePath, "Notes") +FakerUtility.randomNumberCreation();
+	  String finance_title=ExcelUtilities.getString(13, 0, excelFilePath, "Notes") +FakerUtility.randomNumberCreation();
 	  financepage.inputExpenseTitle(finance_title);
 	  String finance_description=ExcelUtilities.getString(13, 1, excelFilePath, "Notes");
 	  financepage.inputExpenseDescription(finance_description);
@@ -221,4 +236,12 @@ public class QALegendTestCases  extends BaseClass{
 	 teammembers.inputMemberPassword(member_password);
 	 teammembers.onClickSaveMember();
  }
+ 
+//@Test
+public void editTickets()
+{
+	ticketspage.onClickTicketsPage();
+//	ticketspage.onClickEditTicketIcon();
+//	ticketspage.onClickEditTicketButton();
+	}
 }

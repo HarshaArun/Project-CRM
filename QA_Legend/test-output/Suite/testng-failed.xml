@@ -9,7 +9,7 @@
     <classes>
       <class name="TestCases.QALegendTestCases">
         <methods>
-          <include name="addExpenseInFinance"/>
+          <include name="addTimeManually"/>
           <include name="initilization"/>
         </methods>
       </class> <!-- TestCases.QALegendTestCases -->

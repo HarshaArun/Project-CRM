@@ -19,6 +19,7 @@
 				 <include name="addTimeManually"></include>
 				 <include name="addExpenseInFinance"></include>
 				 <include name="addTeamMember"></include>
+				 <include name="editTickets"></include>
 			 </methods>
 		 </class>
 	 </classes>

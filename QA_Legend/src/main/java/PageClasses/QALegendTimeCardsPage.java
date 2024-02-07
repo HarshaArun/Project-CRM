@@ -21,11 +21,39 @@ public class QALegendTimeCardsPage {
 	@FindBy(xpath = "//a[@class='btn btn-default']")
 	WebElement addTimeManuallyField;
 	
-	@FindBy(xpath = "(//a[@class='select2-choice'])[3]")
-	WebElement timeCardsTeamMemberField;
+	@FindBy(id = "select2-chosen-56")
+	WebElement teamMemberField;
 	
-	@FindBy(xpath = "(//span[text()='Saumia Alex '])")
-	WebElement timeCardsMemberField;
+	@FindBy(xpath = "//div[text()='Harsha Arun ']")
+	WebElement searchTeamMember;
+	
+	@FindBy(xpath = "(//a[@class='select2-choice'])[3]")
+	WebElement selectTeamMember;
+	
+	@FindBy(id = "in_date")
+	WebElement inDateField;
+	
+	@FindBy(xpath = "//div[@class='datepicker-days']")
+	WebElement inCalendarField;
+	
+	@FindBy(id="out_date")
+	WebElement outDateField;
+	
+	@FindBy(xpath = "//div[@class='datepicker-days']")
+	WebElement outCalendarField;
+	
+	@FindBy(xpath = "(//td[@class='day'])[16]")
+	WebElement selectOutDateField;
+	
+	@FindBy(id = "in_time")
+	WebElement inTimeField;
+	
+	@FindBy(id="out_time")
+	WebElement outTimeField;
+	
+	@FindBy(xpath = "//button[@type='submit']")
+	WebElement saveAddTimeField;
+	
 	
 	public QALegendTimeCardsPage(WebDriver driver) {
 		// TODO Auto-generated constructor stub
@@ -45,14 +73,83 @@ public class QALegendTimeCardsPage {
 		
 		public void onClickTimeCardsTeamMember()
 		 {
-			WaitUtility.waitForAnElementToBeClickable(driver,timeCardsTeamMemberField);
+		//	WaitUtility.waitForAnElementToBeClickable(driver,timeCardsTeamMemberField);
 		//	 PageUtility.clickOnElement(timeCardsTeamMemberField);
+			PageUtility.clearText(timeCardsTeamMemberField);
 			PageUtility.clickUsingJavaScript(timeCardsTeamMemberField, driver);
 		 }
 		
-		public void onClickTimeCardsMember()
+		public void onClickInDate()
 		 {
-			 PageUtility.clickOnElement(timeCardsMemberField);
+			 PageUtility.clickOnElement(inDateField);
+			 
+		 }
+		
+		public void onClickInCalendar()
+		 {
+			 PageUtility.clickOnElement(inCalendarField);
+			 
+		 }
+		
+		public void onClickOutDate()
+		 {
+			 PageUtility.clickOnElement(outDateField);
+			 
+		 }
+		
+		public void onClickOutCalendar()
+		 {
+			 PageUtility.clickOnElement(outCalendarField);
+			 
+		 }
+		
+		public void onClickSelectOutDate()
+		 {
+			 PageUtility.clickOnElement(selectOutDateField);
+			 
+		 }
+		
+		public void inputOutDate(String outdate)
+		 {
+			PageUtility.clearText(outDateField);
+			 PageUtility.enterText(outDateField, outdate);
+			 
+		 }
+		
+		public void onClickInTime()
+		 {
+			 PageUtility.clickUsingJavaScript(inTimeField, driver);
+			 
+		 }
+		
+//		public void clearInTime()
+//		{
+//			PageUtility.clearText(inTimeField);	
+//		}
+		
+		public void inputInTime(String intime)
+		 {
+			PageUtility.clearText(inTimeField);
+			 PageUtility.enterText(inTimeField, intime);
+			 
+		 }
+		
+		public void onClickOutTime()
+		 {
+			 PageUtility.clickUsingJavaScript(outTimeField, driver);
+			 
+		 }
+		
+		public void inputOutTime(String outtime)
+		 {
+			PageUtility.clearText(outTimeField);
+			 PageUtility.enterText(outTimeField, outtime);
+			 
+		 }
+		
+		public void onClickSaveAddTime()
+		 {
+			 PageUtility.clickUsingJavaScript(saveAddTimeField, driver);
 			 
 		 }
 }

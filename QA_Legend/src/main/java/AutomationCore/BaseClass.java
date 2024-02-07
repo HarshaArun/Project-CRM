@@ -41,8 +41,8 @@ public class BaseClass {
 	
 	public String getScreenShotPath(String testCaseName, WebDriver driver) throws IOException
 	{
-		TakesScreenshot ts = (TakesScreenshot)driver; 
-		File source = ts.getScreenshotAs(OutputType.FILE);
+		TakesScreenshot ts = (TakesScreenshot)driver;       // to enable driver to take screen shot
+		File source = ts.getScreenshotAs(OutputType.FILE);     //capture screenshot in file
 		String destinationFile = System.getProperty("user.dir")+"\\test-output\\"+testCaseName+".png";
 		com.google.common.io.Files.copy(source,new File(destinationFile));
 		return destinationFile;
