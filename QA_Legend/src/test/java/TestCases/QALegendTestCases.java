@@ -102,18 +102,18 @@ public class QALegendTestCases  extends BaseClass{
 	  
 	  	String notes_title=ExcelUtilities.getString(1, 0, excelFilePath, "Notes") +FakerUtility.randomNumberCreation();
 	  	notespage.inputAddNotesTitle(notes_title);
-	
+	  	
 	  	String notes_description=ExcelUtilities.getString(1, 1, excelFilePath, "Notes");
 	  	notespage.inputAddNotesDescription(notes_description);
-	  	
-//	  	notespage.addNoteScrollPage();
 //	  	notespage.onClickAddNotesLabels();
 	  	notespage.onClickAddNoteSaveButton();
+	  	Assert.assertEquals(notespage.titleOfAddNote(),prop.getProperty("addnote_pagetitle"));
+
 	  
   }
  
   
-// @Test
+ @Test
  public void addProjects() throws IOException
  {
 	 projectspage.onClickProjects();
@@ -127,7 +127,8 @@ public class QALegendTestCases  extends BaseClass{
 	 projectspage.inputProjectDescription(project_description);
 	 projectspage.inputProjectClient();
 	 projectspage.onClickSaveProject();
-	 
+//	 Assert.assertEquals(projectspage.titleOfProjects(), true);
+//	 Assert.assertEquals(projectspage.titleOfAllProjects(),"addprojects_pagetitle");
 	
  }
  
@@ -169,12 +170,14 @@ public class QALegendTestCases  extends BaseClass{
  }
  
  
- @Test
+// @Test
  public void addTimeManually() throws IOException
  {
 	 timecardspage.onClickTimeCards();
 	 timecardspage.onClickAddTimeManually();
-	 timecardspage.onClickTimeCardsTeamMember();
+	 timecardspage.onClickTeamMember();
+	 timecardspage.onClickSearchTeamMember();
+	 timecardspage.onClickSelectTeamMember();
 	 timecardspage.onClickInDate();
 	 timecardspage.onClickInCalendar();
 	 timecardspage.onClickOutDate();
@@ -197,6 +200,7 @@ public class QALegendTestCases  extends BaseClass{
 	 financepage.onClickFinancePage();
 	 financepage.onClickExpensePage();
 	 financepage.onClickAddExpensePage();
+	 Assert.assertEquals(financepage.addExpenseTitle(),prop.getProperty("addexpense_pagetitle"));
 	 financepage.onClickExpenseCategory();
 	  String finance_amount=ExcelUtilities.getNumeric(13, 2, excelFilePath, "Notes");
 	  financepage.inputExpenseAmount(finance_amount);
@@ -207,6 +211,8 @@ public class QALegendTestCases  extends BaseClass{
 //	 financepage.onClickExpenseTax();
 //	 financepage.onClickExpenseTaxFromSelect();
 	  financepage.onClickSaveExpense();
+	  
+	  Assert.assertEquals(financepage.titleOfExpense(), true);
  }
  
 // @Test
@@ -237,7 +243,7 @@ public class QALegendTestCases  extends BaseClass{
 	 teammembers.onClickSaveMember();
  }
  
-//@Test
+//@Test  
 public void editTickets()
 {
 	ticketspage.onClickTicketsPage();

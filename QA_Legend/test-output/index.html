@@ -103,7 +103,7 @@
                     <div class="method-list-content failed suite-Suite">
                       <span>
                         <img src="failed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Suite" title="TestCases.QALegendTestCases" class="method navigator-link" hash-for-method="addTimeManually">addTimeManually</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Suite" title="TestCases.QALegendTestCases" class="method navigator-link" hash-for-method="addProjects">addProjects</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content failed suite-Suite -->
@@ -126,34 +126,13 @@
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="addTimeManually">
-                  </a> <!-- addTimeManually -->
-                  <span class="method-name">addTimeManually</span>
-                  <div class="stack-trace">org.openqa.selenium.InvalidElementStateException: invalid element state
-  (Session info: chrome=121.0.6167.160)
-Build info: version: &apos;4.16.0&apos;, revision: &apos;15400459dd*&apos;
-System info: os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;17.0.7&apos;
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [177687d70678281e1de0d103aaa727b2, clearElement {id=5087ABBD64CE27A4CC691904DD877108_element_79}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 121.0.6167.160, chrome: {chromedriverVersion: 121.0.6167.85 (3f98d690ad7e..., userDataDir: C:\Users\Arun\AppData\Local...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:53268}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:53268/devtoo..., se:cdpVersion: 121.0.6167.160, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Element: [[ChromeDriver: chrome on windows (177687d70678281e1de0d103aaa727b2)] -&gt; xpath: //a[@class=&apos;btn btn-default&apos;]]
-Session ID: 177687d70678281e1de0d103aaa727b2
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:200)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:175)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:523)
-	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:224)
-	at org.openqa.selenium.remote.RemoteWebElement.clear(RemoteWebElement.java:130)
-	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:51)
-	at jdk.proxy2/jdk.proxy2.$Proxy12.clear(Unknown Source)
-	at Utilities.PageUtility.clearText(PageUtility.java:29)
-	at PageClasses.QALegendTimeCardsPage.onClickTimeCardsTeamMember(QALegendTimeCardsPage.java:72)
-	at TestCases.QALegendTestCases.addTimeManually(QALegendTestCases.java:177)
+                  <a name="addProjects">
+                  </a> <!-- addProjects -->
+                  <span class="method-name">addProjects</span>
+                  <div class="stack-trace">java.lang.AssertionError: expected [addprojects_pagetitle] but found [Projects]
+	at TestCases.QALegendTestCases.addProjects(QALegendTestCases.java:131)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-... Removed 36 stack frames
+... Removed 33 stack frames
 </div> <!-- stack-trace -->
                 </div> <!-- method-content -->
               </div> <!-- method -->
@@ -229,14 +208,14 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'addTimeManually')
+data.setCell(0, 1, 'addProjects')
 data.setCell(0, 2, 'TestCases.QALegendTestCases')
-data.setCell(0, 3, 1760);
+data.setCell(0, 3, 3476);
 window.suiteTableData['Suite']= { tableData: data, tableDiv: 'times-div-Suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 1 seconds</span>
+              <span class="suite-total-time">Total running time: 3 seconds</span>
               <div id="times-div-Suite">
               </div> <!-- times-div-Suite -->
             </div> <!-- times-div -->
@@ -277,8 +256,8 @@ return data;
               <div class="test-method">
                 <img src="failed.png">
                 </img>
-                <span class="method-name">addTimeManually</span>
-                <span class="method-start">10093 ms</span>
+                <span class="method-name">addProjects</span>
+                <span class="method-start">13035 ms</span>
               </div> <!-- test-method -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

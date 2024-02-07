@@ -35,6 +35,8 @@ public class QALegend_NotesPage {
 	@FindBy(xpath = "//button[@type='submit']")
 	WebElement savebuttonfield;
 	
+	@FindBy(id = "ajaxModalTitle")
+	WebElement titleOfAddNote;
 
 	public QALegend_NotesPage(WebDriver driver) {
 		// TODO Auto-generated constructor stub
@@ -76,5 +78,10 @@ public class QALegend_NotesPage {
 	public void onClickAddNoteSaveButton()
 	{
 		PageUtility.doubleClick(driver, savebuttonfield);
+	}
+	
+	public String titleOfAddNote()
+	{
+		return titleOfAddNote.getText();
 	}
 }

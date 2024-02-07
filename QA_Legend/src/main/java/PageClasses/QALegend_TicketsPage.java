@@ -15,7 +15,7 @@ public class QALegend_TicketsPage {
 
 	WebDriver driver;
 	
-	@FindBy(xpath = "//i[@class='fa fa-life-ring']//parent::a")
+	@FindBy(xpath = "//span[text()='Tickets']")
 	WebElement ticketsPageField;
 	
 	@FindBy(xpath = "//button[@class='btn btn-default dropdown-toggle  mt0 mb0']")

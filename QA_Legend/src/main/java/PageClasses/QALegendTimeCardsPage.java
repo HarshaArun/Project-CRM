@@ -21,13 +21,13 @@ public class QALegendTimeCardsPage {
 	@FindBy(xpath = "//a[@class='btn btn-default']")
 	WebElement addTimeManuallyField;
 	
-	@FindBy(id = "select2-chosen-56")
+	@FindBy(xpath = "(//span[@class='select2-chosen'])[3]")
 	WebElement teamMemberField;
 	
-	@FindBy(xpath = "//div[text()='Harsha Arun ']")
+	@FindBy(xpath ="(//input[@class='select2-input'])[5]" )
 	WebElement searchTeamMember;
 	
-	@FindBy(xpath = "(//a[@class='select2-choice'])[3]")
+	@FindBy(xpath = "//div[text()='Harsha Arun ']")
 	WebElement selectTeamMember;
 	
 	@FindBy(id = "in_date")
@@ -69,14 +69,26 @@ public class QALegendTimeCardsPage {
 		public void onClickAddTimeManually()
 		 {
 			 PageUtility.clickOnElement(addTimeManuallyField);
+			
 		 }
-		
-		public void onClickTimeCardsTeamMember()
+		public void onClickTeamMember()
+		 {
+			 PageUtility.clickOnElement(teamMemberField);
+			 PageUtility.clearText(teamMemberField);
+		 }
+		public void onClickSearchTeamMember()
 		 {
 		//	WaitUtility.waitForAnElementToBeClickable(driver,timeCardsTeamMemberField);
-		//	 PageUtility.clickOnElement(timeCardsTeamMemberField);
-			PageUtility.clearText(timeCardsTeamMemberField);
-			PageUtility.clickUsingJavaScript(timeCardsTeamMemberField, driver);
+		//	 PageUtility.clickOnElement(timeCardsTeamMemberField);	
+			PageUtility.clickUsingJavaScript(searchTeamMember, driver);
+			PageUtility.clearText(searchTeamMember);
+		 }
+		
+		public void onClickSelectTeamMember()
+		 {
+		//	WaitUtility.waitForAnElementToBeClickable(driver,timeCardsTeamMemberField);
+			PageUtility.clickUsingJavaScript(selectTeamMember, driver);
+			
 		 }
 		
 		public void onClickInDate()

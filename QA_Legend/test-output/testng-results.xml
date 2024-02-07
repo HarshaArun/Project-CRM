@@ -2,12 +2,12 @@
 <testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-02-07T16:24:04 IST" name="Suite" finished-at="2024-02-07T16:24:17 IST" duration-ms="12178">
+  <suite started-at="2024-02-07T22:56:05 IST" name="Suite" finished-at="2024-02-07T22:56:22 IST" duration-ms="16795">
     <groups>
     </groups>
-    <test started-at="2024-02-07T16:24:04 IST" name="Test" finished-at="2024-02-07T16:24:17 IST" duration-ms="12178">
+    <test started-at="2024-02-07T22:56:05 IST" name="Test" finished-at="2024-02-07T22:56:22 IST" duration-ms="16795">
       <class name="TestCases.QALegendTestCases">
-        <test-method is-config="true" signature="initilization(java.lang.String)[pri:0, instance:TestCases.QALegendTestCases@3f6b0be5]" started-at="2024-02-07T16:24:04 IST" name="initilization" finished-at="2024-02-07T16:24:15 IST" duration-ms="10090" status="PASS">
+        <test-method is-config="true" signature="initilization(java.lang.String)[pri:0, instance:TestCases.QALegendTestCases@3f6b0be5]" started-at="2024-02-07T22:56:05 IST" name="initilization" finished-at="2024-02-07T22:56:18 IST" duration-ms="13034" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -18,52 +18,20 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initilization -->
-        <test-method signature="addTimeManually()[pri:0, instance:TestCases.QALegendTestCases@3f6b0be5]" started-at="2024-02-07T16:24:15 IST" name="addTimeManually" finished-at="2024-02-07T16:24:16 IST" duration-ms="1760" status="FAIL">
-          <exception class="org.openqa.selenium.InvalidElementStateException">
+        <test-method signature="addProjects()[pri:0, instance:TestCases.QALegendTestCases@3f6b0be5]" started-at="2024-02-07T22:56:18 IST" name="addProjects" finished-at="2024-02-07T22:56:21 IST" duration-ms="3476" status="FAIL">
+          <exception class="java.lang.AssertionError">
             <message>
-              <![CDATA[invalid element state
-  (Session info: chrome=121.0.6167.160)
-Build info: version: '4.16.0', revision: '15400459dd*'
-System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.7'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [177687d70678281e1de0d103aaa727b2, clearElement {id=5087ABBD64CE27A4CC691904DD877108_element_79}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 121.0.6167.160, chrome: {chromedriverVersion: 121.0.6167.85 (3f98d690ad7e..., userDataDir: C:\Users\Arun\AppData\Local...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:53268}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:53268/devtoo..., se:cdpVersion: 121.0.6167.160, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Element: [[ChromeDriver: chrome on windows (177687d70678281e1de0d103aaa727b2)] -> xpath: //a[@class='btn btn-default']]
-Session ID: 177687d70678281e1de0d103aaa727b2]]>
+              <![CDATA[expected [addprojects_pagetitle] but found [Projects]]]>
             </message>
             <full-stacktrace>
-              <![CDATA[org.openqa.selenium.InvalidElementStateException: invalid element state
-  (Session info: chrome=121.0.6167.160)
-Build info: version: '4.16.0', revision: '15400459dd*'
-System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.7'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [177687d70678281e1de0d103aaa727b2, clearElement {id=5087ABBD64CE27A4CC691904DD877108_element_79}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 121.0.6167.160, chrome: {chromedriverVersion: 121.0.6167.85 (3f98d690ad7e..., userDataDir: C:\Users\Arun\AppData\Local...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:53268}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:53268/devtoo..., se:cdpVersion: 121.0.6167.160, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Element: [[ChromeDriver: chrome on windows (177687d70678281e1de0d103aaa727b2)] -> xpath: //a[@class='btn btn-default']]
-Session ID: 177687d70678281e1de0d103aaa727b2
-at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
-at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
-at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
-at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
-at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
-at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)
-at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)
-at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:200)
-at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:175)
-at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:523)
-at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:224)
-at org.openqa.selenium.remote.RemoteWebElement.clear(RemoteWebElement.java:130)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:51)
-at jdk.proxy2/jdk.proxy2.$Proxy12.clear(Unknown Source)
-at Utilities.PageUtility.clearText(PageUtility.java:29)
-at PageClasses.QALegendTimeCardsPage.onClickTimeCardsTeamMember(QALegendTimeCardsPage.java:72)
-at TestCases.QALegendTestCases.addTimeManually(QALegendTestCases.java:177)
+              <![CDATA[java.lang.AssertionError: expected [addprojects_pagetitle] but found [Projects]
+at org.testng.Assert.fail(Assert.java:111)
+at org.testng.Assert.failNotEquals(Assert.java:1578)
+at org.testng.Assert.assertEqualsImpl(Assert.java:150)
+at org.testng.Assert.assertEquals(Assert.java:132)
+at org.testng.Assert.assertEquals(Assert.java:656)
+at org.testng.Assert.assertEquals(Assert.java:666)
+at TestCases.QALegendTestCases.addProjects(QALegendTestCases.java:131)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -94,10 +62,10 @@ at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
 at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
 ]]>
             </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.InvalidElementStateException -->
+          </exception> <!-- java.lang.AssertionError -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- addTimeManually -->
+        </test-method> <!-- addProjects -->
       </class> <!-- TestCases.QALegendTestCases -->
     </test> <!-- Test -->
   </suite> <!-- Suite -->

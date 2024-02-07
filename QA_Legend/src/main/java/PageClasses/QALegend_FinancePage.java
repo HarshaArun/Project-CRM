@@ -46,6 +46,11 @@ public class QALegend_FinancePage {
 	@FindBy(xpath = "//button[@class='btn btn-primary']")
 	WebElement expenseSaveField;
 	
+	@FindBy(xpath = "//table//tr//td[text()=\"Training792\"]")
+	WebElement titleOfExpense;
+	
+	@FindBy(xpath = "//h4[text()='Add expense']")
+	WebElement addExpenseTitle;
 	
 	public QALegend_FinancePage(WebDriver driver) {
 		// TODO Auto-generated constructor stub
@@ -90,6 +95,10 @@ public class QALegend_FinancePage {
 		 PageUtility.enterText(expensedescriptionField, description);
 	 }
 	
+	public boolean titleOfExpense()
+	{
+		return titleOfExpense.isDisplayed();
+	}
 	
 	
 	
@@ -113,4 +122,9 @@ public class QALegend_FinancePage {
 		 PageUtility.scrollToElement(expenseSaveField, driver);
 		 PageUtility.clickUsingJavaScript(expenseSaveField, driver);
 	 }
+	
+	public String addExpenseTitle()
+	{
+		return addExpenseTitle.getText();
+	}
 }

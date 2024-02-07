@@ -10,14 +10,14 @@ public class ExtentReportNG {
 	{
 		
 		String path=System.getProperty("user.dir")+"\\test-output\\report.html";
-		ExtentSparkReporter reporter=new ExtentSparkReporter(path);
-		reporter.config().setReportName("Web Automation Report");
-		reporter.config().setDocumentTitle("Test Results");
+		ExtentSparkReporter reporter=new ExtentSparkReporter(path);  // this class  is used to create& configure reports in html format
+		reporter.config().setReportName("Web Automation Report");  //report name
+		reporter.config().setDocumentTitle("Test Results");  //webpage title
 		extent= new ExtentReports();
 		extent.attachReporter(reporter);
 		extent.setSystemInfo("Tester", "Harsha");
 		return extent;
 		
-	}
+	}//classname.methodname;
 
 }
