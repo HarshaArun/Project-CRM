@@ -61,6 +61,12 @@ public class QALegend_TeamMembers {
 	@FindBy(id = "form-submit")
 	WebElement saveMemberField;
 	
+	@FindBy(id = "ajaxModalTitle")
+	WebElement titleOfAddMember;
+	
+	@FindBy(xpath = "//table//tbody//tr//td//a[text()='Harsha Arun ']")
+	WebElement assertionOfMemberName;
+	
 	public QALegend_TeamMembers(WebDriver driver) {
 		// TODO Auto-generated constructor stub
 		this.driver=driver;
@@ -143,5 +149,15 @@ public class QALegend_TeamMembers {
 		
 		 PageUtility.clickUsingJavaScript(saveMemberField, driver);
 	 }
+	
+	public String titleOfAddMember()
+	{
+		return titleOfAddMember.getText();
+	}
+	
+	public boolean assertionOfMemberName()
+	{
+		return assertionOfMemberName.isDisplayed();
+	}
 	
 }

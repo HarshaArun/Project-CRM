@@ -15,17 +15,14 @@ public class QALegendTimeCardsPage {
 
 	WebDriver driver;
 	
-	@FindBy(xpath = "//span[text()='Time cards']")
+	@FindBy(xpath = "//i[@class='fa fa-clock-o font-16']")
 	WebElement timeCardPageField;
 	
 	@FindBy(xpath = "//a[@class='btn btn-default']")
 	WebElement addTimeManuallyField;
 	
-	@FindBy(xpath = "(//span[@class='select2-chosen'])[3]")
-	WebElement teamMemberField;
-	
-	@FindBy(xpath ="(//input[@class='select2-input'])[5]" )
-	WebElement searchTeamMember;
+	@FindBy(id="s2id_attendance_user_id")
+	WebElement dropDownteamMember;
 	
 	@FindBy(xpath = "//div[text()='Harsha Arun ']")
 	WebElement selectTeamMember;
@@ -54,6 +51,8 @@ public class QALegendTimeCardsPage {
 	@FindBy(xpath = "//button[@type='submit']")
 	WebElement saveAddTimeField;
 	
+	@FindBy(xpath = "ajaxModalTitle")
+	WebElement titleOfAddTimeManually;
 	
 	public QALegendTimeCardsPage(WebDriver driver) {
 		// TODO Auto-generated constructor stub
@@ -63,7 +62,8 @@ public class QALegendTimeCardsPage {
 	
 		public void onClickTimeCards()
 		 {
-			 PageUtility.clickOnElement(timeCardPageField);
+			 PageUtility.scrollToBottom(driver);
+			 PageUtility.clickUsingJavaScript(timeCardPageField, driver);
 		 }
 		
 		public void onClickAddTimeManually()
@@ -71,25 +71,19 @@ public class QALegendTimeCardsPage {
 			 PageUtility.clickOnElement(addTimeManuallyField);
 			
 		 }
-		public void onClickTeamMember()
+		public void onClickDropDownTeamMember()
 		 {
-			 PageUtility.clickOnElement(teamMemberField);
-			 PageUtility.clearText(teamMemberField);
+			 PageUtility.clickOnElement(dropDownteamMember);
+			 
 		 }
-		public void onClickSearchTeamMember()
-		 {
-		//	WaitUtility.waitForAnElementToBeClickable(driver,timeCardsTeamMemberField);
-		//	 PageUtility.clickOnElement(timeCardsTeamMemberField);	
-			PageUtility.clickUsingJavaScript(searchTeamMember, driver);
-			PageUtility.clearText(searchTeamMember);
-		 }
-		
 		public void onClickSelectTeamMember()
 		 {
-		//	WaitUtility.waitForAnElementToBeClickable(driver,timeCardsTeamMemberField);
-			PageUtility.clickUsingJavaScript(selectTeamMember, driver);
+			WaitUtility.waitForAnElementToBeClickable(driver,selectTeamMember);
+		    PageUtility.clickOnElement(selectTeamMember);	
 			
 		 }
+		
+		
 		
 		public void onClickInDate()
 		 {
@@ -164,4 +158,9 @@ public class QALegendTimeCardsPage {
 			 PageUtility.clickUsingJavaScript(saveAddTimeField, driver);
 			 
 		 }
+		
+//		public String titleOfAddTimeManually()
+//		{
+//			return titleOfAddTimeManually.getText();
+//		}
 }

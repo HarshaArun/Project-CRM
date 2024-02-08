@@ -110,4 +110,10 @@ public static void scrollToElement(WebElement element ,WebDriver driver) {
         Actions actions = new Actions(driver);
         actions.clickAndHold(element).build().perform();
     }
+    
+    public static void selectDropDown(WebElement element, String visibleText)
+    {
+    	Select staticDropDown= new Select(element);
+    	staticDropDown.deselectByVisibleText(visibleText);
+    }
 }

@@ -19,10 +19,11 @@ import PageClasses.QALegend_FinancePage;
 import PageClasses.QALegend_HomePage;
 import PageClasses.QALegend_Items;
 import PageClasses.QALegend_Loginpage;
+import PageClasses.QALegend_Messages;
 import PageClasses.QALegend_NotesPage;
 import PageClasses.QALegend_ProjectsPage;
 import PageClasses.QALegend_TeamMembers;
-import PageClasses.QALegend_TicketsPage;
+import PageClasses.QALegend_AnnouncementPage;
 import Utilities.ExcelUtilities;
 import Utilities.FakerUtility;
 
@@ -40,7 +41,8 @@ public class QALegendTestCases  extends BaseClass{
   QALegendTimeCardsPage timecardspage;
   QALegend_FinancePage financepage;
   QALegend_TeamMembers teammembers;
-  QALegend_TicketsPage ticketspage;
+  QALegend_AnnouncementPage announcementpage;
+  QALegend_Messages messagespage;
   
   @BeforeMethod
   @Parameters({"Browser"})
@@ -60,7 +62,8 @@ public class QALegendTestCases  extends BaseClass{
 	 timecardspage= new QALegendTimeCardsPage(driver);
 	 financepage= new QALegend_FinancePage(driver);
 	 teammembers=new QALegend_TeamMembers(driver);
-	 ticketspage=new QALegend_TicketsPage(driver);
+	 announcementpage=new QALegend_AnnouncementPage(driver);
+	 messagespage=new QALegend_Messages(driver);
 	 
 	 loginpage.enterUserName(prop.getProperty("username"));
 	 loginpage.enterPassword(prop.getProperty("password"));
@@ -74,8 +77,8 @@ public class QALegendTestCases  extends BaseClass{
 //	  homepage.logOut();
 //  }
 //  
-  @Test
-  public void loginCRM()
+  @Test (priority = 1)
+  public void loginCRM() 
   {
 	  homepage.logOut();
 	  loginpage.enterUserName(prop.getProperty("username"));
@@ -90,30 +93,26 @@ public class QALegendTestCases  extends BaseClass{
 	 Assert.assertEquals(expectuser , actualuser);
   }
   
-//  @Test
+//  @Test (priority = 3)
   public void addNotes() throws IOException
   {
 	  notespage.onClickNotes();
-	  notespage.onClickAddNotes();
-	  
+	  notespage.onClickAddNotes();  
 	//  notespage.enterAddNotesTitle(prop.getProperty("addnote_title"));
 	//  notespage.enterAddNotesDescription(prop.getProperty("addnote_description"));
-	
-	  
-	  	String notes_title=ExcelUtilities.getString(1, 0, excelFilePath, "Notes") +FakerUtility.randomNumberCreation();
-	  	notespage.inputAddNotesTitle(notes_title);
-	  	
+	 	String notes_title=ExcelUtilities.getString(1, 0, excelFilePath, "Notes") +FakerUtility.randomNumberCreation();
+	  	notespage.inputAddNotesTitle(notes_title);	
 	  	String notes_description=ExcelUtilities.getString(1, 1, excelFilePath, "Notes");
 	  	notespage.inputAddNotesDescription(notes_description);
 //	  	notespage.onClickAddNotesLabels();
 	  	notespage.onClickAddNoteSaveButton();
 	  	Assert.assertEquals(notespage.titleOfAddNote(),prop.getProperty("addnote_pagetitle"));
-
+	  	Assert.assertEquals(notespage.assertionForTitle(), true);
 	  
   }
  
   
- @Test
+// @Test
  public void addProjects() throws IOException
  {
 	 projectspage.onClickProjects();
@@ -127,18 +126,32 @@ public class QALegendTestCases  extends BaseClass{
 	 projectspage.inputProjectDescription(project_description);
 	 projectspage.inputProjectClient();
 	 projectspage.onClickSaveProject();
-//	 Assert.assertEquals(projectspage.titleOfProjects(), true);
-//	 Assert.assertEquals(projectspage.titleOfAllProjects(),"addprojects_pagetitle");
+	 Assert.assertEquals(projectspage.assertionOfTitleProjects(), true);
+	 Assert.assertEquals(projectspage.titleOfAllProjects(),prop.getProperty("addprojects_pagetitle"));
 	
  }
  
- //@Test
+//@Test
+public void composeMessage() throws IOException
+{
+	messagespage.onClickmessagesPage();
+	messagespage.onClickcomposePage();
+	messagespage.onClickDropDownMessageTo();
+	messagespage.onClickSelectMessageTo();
+	String messages_subject=ExcelUtilities.getString(19, 0, excelFilePath, "Notes")+FakerUtility.randomNumberCreation();
+	messagespage.inputSubject(messages_subject);
+	String messages_writemessage=ExcelUtilities.getString(19, 1, excelFilePath, "Notes");
+	messagespage.inputWriteMessage(messages_writemessage);
+	messagespage.onClickSaveCompose();
+	}
+ 
+// @Test
  	public void applyLeave() throws IOException
  	{
 	 leavepage.onClickLeavePage();
 	 leavepage.onClickApplyLeavePage();
-	 leavepage.onClickApplyLeaveType();
-	 leavepage.onClickInputApplyLeaveType();
+	 leavepage.onClickdropDownApplyLeave();
+	 leavepage.onClickapplyLeaveType();
 	 leavepage.onClickApplyLeaveDuration();
 	 leavepage.onClickLeaveDurationButton();
 	 String leave_date=ExcelUtilities.getDateValue(4, 1, excelFilePath, "Notes");
@@ -146,6 +159,7 @@ public class QALegendTestCases  extends BaseClass{
 	 String leave_reason= ExcelUtilities.getString(4, 0, excelFilePath, "Notes");
 	  leavepage.inputApplyLeaveReason(leave_reason);
 	 leavepage.onClickSaveApplyLeave();
+	 Assert.assertEquals(leavepage.titleOfApplyLeave(), prop.getProperty("addleave"));
  	}
  	
  	
@@ -166,6 +180,8 @@ public class QALegendTestCases  extends BaseClass{
 	 String item_rate= ExcelUtilities.getNumeric(4, 5, excelFilePath, "Notes") ;
 	 itemspage.inputItemRate(item_rate);
 	 itemspage.onClickSaveAddItem();
+	 Assert.assertEquals(itemspage.titleOfItem(), prop.getProperty("additem_pagetitle"));
+//	 Assert.assertEquals(itemspage.valueDisplay(), true);
 	 
  }
  
@@ -175,8 +191,7 @@ public class QALegendTestCases  extends BaseClass{
  {
 	 timecardspage.onClickTimeCards();
 	 timecardspage.onClickAddTimeManually();
-	 timecardspage.onClickTeamMember();
-	 timecardspage.onClickSearchTeamMember();
+	 timecardspage.onClickDropDownTeamMember();
 	 timecardspage.onClickSelectTeamMember();
 	 timecardspage.onClickInDate();
 	 timecardspage.onClickInCalendar();
@@ -191,7 +206,8 @@ public class QALegendTestCases  extends BaseClass{
 	 timecardspage.onClickOutTime();
 	 String timecard_outtime=ExcelUtilities.getString(16, 2,excelFilePath, "Notes");
 	 timecardspage.inputOutTime(timecard_outtime);
-//	 timecardspage.onClickSaveAddTime();
+	 timecardspage.onClickSaveAddTime();
+//	 Assert.assertEquals(timecardspage.titleOfAddTimeManually(), prop.getProperty("addtimemanually"));
  }
  
 // @Test
@@ -215,7 +231,7 @@ public class QALegendTestCases  extends BaseClass{
 	  Assert.assertEquals(financepage.titleOfExpense(), true);
  }
  
-// @Test
+// @Test(priority = 2)
  public void addTeamMember() throws IOException
  {
 	 teammembers.onClickTeamMembersPage();
@@ -241,13 +257,25 @@ public class QALegendTestCases  extends BaseClass{
 	 String member_password= ExcelUtilities.getString(10, 4, excelFilePath, "Notes") ;
 	 teammembers.inputMemberPassword(member_password);
 	 teammembers.onClickSaveMember();
+	 Assert.assertEquals(teammembers.titleOfAddMember(), prop.getProperty("addteammember"));
+//	 Assert.assertEquals(teammembers.titleOfAddMember(), true);
  }
  
-//@Test  
-public void editTickets()
+@Test  
+public void editAnnouncement() throws IOException
 {
-	ticketspage.onClickTicketsPage();
-//	ticketspage.onClickEditTicketIcon();
-//	ticketspage.onClickEditTicketButton();
-	}
+	
+	announcementpage.onClickAnnouncementButton();
+	announcementpage.onClickEditButton();
+	String announcement_title=ExcelUtilities.getString(19, 2, excelFilePath, "Notes")+ FakerUtility.randomNumberCreation();
+	announcementpage.inputEditTitle(announcement_title);
+	String announcement_text=ExcelUtilities.getString(19, 3, excelFilePath, "Notes")+ FakerUtility.randomNumberCreation();
+	announcementpage.inputEditText(announcement_text);
+	announcementpage.onClickSaveEditButton();
+	announcementpage.onClickviewButton();
+	announcementpage.onClickbackToAnnouncements();
+}
+
+
+
 }

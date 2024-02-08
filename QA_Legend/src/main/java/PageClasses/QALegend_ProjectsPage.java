@@ -32,10 +32,10 @@ public class QALegend_ProjectsPage {
 	 @FindBy(xpath = "//button[@type='submit']")
 	 WebElement projectSaveButtonField;
 	 
-	 @FindBy(xpath = "//table//tr//td//a[text()='Qalegend_selenium9060']")
-	 WebElement titleOfProjects;
+	 @FindBy(xpath = "//table//tbody//tr//td//a[text()='Qalegend_selenium9692']")
+	 WebElement assertionOfTitleProjects;
 	
-	 @FindBy(xpath = "//h1[text()='Projects']")
+	 @FindBy(id = "ajaxModalTitle")
 	 WebElement titleOfAllProjects;
 	 
 	public QALegend_ProjectsPage(WebDriver driver) {
@@ -78,9 +78,9 @@ public class QALegend_ProjectsPage {
 		PageUtility.doubleClick(driver, projectSaveButtonField);
 	}
 	
-	public Boolean titleOfProjects()
+	public boolean assertionOfTitleProjects()
 	{
-		return titleOfProjects.isDisplayed();
+		return  assertionOfTitleProjects.isDisplayed();
 		
 	}
 	

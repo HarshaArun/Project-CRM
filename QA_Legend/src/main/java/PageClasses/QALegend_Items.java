@@ -33,8 +33,12 @@ public class QALegend_Items {
 	 @FindBy(xpath  = "//button[text()=' Save']")
 	 WebElement saveItemField;
 	 
-	 @FindBy(xpath = "//tbody//tr//td[@class=' w20p' and text()='Samsung897']")
+	 @FindBy(xpath = "//tbody//tr//td[@class=' w20p' and text()='Samsung7033']")
 	 WebElement displaySavedItem;
+	 
+	 @FindBy(id = "ajaxModalTitle")
+	 WebElement titleOfItem;
+	 
 	 
 	public QALegend_Items(WebDriver driver) {
 		// TODO Auto-generated constructor stub
@@ -86,5 +90,10 @@ public class QALegend_Items {
 	   WaitUtility.waitForAnElementToBeClickable(driver, saveItemField);
 		PageUtility.doubleClick(driver, saveItemField);
 	}
+   
+   public String titleOfItem()
+   {
+	   return titleOfItem.getText();
+   }
    
 }

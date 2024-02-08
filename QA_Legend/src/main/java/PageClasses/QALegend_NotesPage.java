@@ -37,6 +37,9 @@ public class QALegend_NotesPage {
 	
 	@FindBy(id = "ajaxModalTitle")
 	WebElement titleOfAddNote;
+	
+	@FindBy(xpath = "//table//tr//td//a[text()='selenium testng1860']")
+	WebElement assertionForTitle;
 
 	public QALegend_NotesPage(WebDriver driver) {
 		// TODO Auto-generated constructor stub
@@ -83,5 +86,10 @@ public class QALegend_NotesPage {
 	public String titleOfAddNote()
 	{
 		return titleOfAddNote.getText();
+	}
+	
+	public boolean assertionForTitle()
+	{
+		return assertionForTitle.isDisplayed();
 	}
 }

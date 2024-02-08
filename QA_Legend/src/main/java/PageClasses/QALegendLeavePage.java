@@ -21,11 +21,11 @@ public class QALegendLeavePage {
 	@FindBy(xpath = "(//a[@class='btn btn-default'])[1]")
 	WebElement applyLeaveField;
 	
-	@FindBy(xpath = "(//span[@class='select2-chosen'])[2]")
-	WebElement applyLeaveTypeField;
+	@FindBy(id = "s2id_leave_type_id")
+	WebElement dropDownApplyLeave;
 	
-	@FindBy(xpath = "(//div[@class='select2-result-label'])[2]")
-	WebElement inputapplyLeaveTypeField;
+	@FindBy(xpath  = "//div[text()='Casual Leave ']")
+	WebElement applyLeaveType;
 	
 	@FindBy(xpath = "(//div[@class='col-md-9'])[2]")
 	WebElement applyLeaveDurationField;
@@ -45,7 +45,8 @@ public class QALegendLeavePage {
 	@FindBy(xpath = "//button[@class='btn btn-primary']")
 	WebElement saveApplyLeaveField;
 	
-	
+	@FindBy(id = "ajaxModalTitle")
+	WebElement titleOfApplyLeave;
 	public QALegendLeavePage(WebDriver driver) {
 		// TODO Auto-generated constructor stub
 		this.driver=driver;
@@ -64,12 +65,14 @@ public class QALegendLeavePage {
 		
 	}
 	
-	public void onClickApplyLeaveType() {
-		PageUtility.clickOnElement(applyLeaveTypeField);
+	public void onClickdropDownApplyLeave()
+	{
+		PageUtility.clickOnElement(dropDownApplyLeave);
 	}
 	
-	public void onClickInputApplyLeaveType() {
-		PageUtility.clickOnElement(inputapplyLeaveTypeField);
+	public void onClickapplyLeaveType()
+	{
+		PageUtility.clickOnElement(applyLeaveType);
 	}
 	
 	public void onClickApplyLeaveDuration() {
@@ -100,5 +103,10 @@ public class QALegendLeavePage {
 	public void onClickAssignLeavePage()
 	{
 		PageUtility.clickOnElement(assignLeaveField);
+	}
+	
+	public String titleOfApplyLeave()
+	{
+		return titleOfApplyLeave.getText();
 	}
 }
