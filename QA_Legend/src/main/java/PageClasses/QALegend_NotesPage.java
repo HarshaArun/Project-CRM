@@ -6,11 +6,16 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import Utilities.PageUtility;
+import Utilities.WaitUtility;
 
 public class QALegend_NotesPage {
 	
 	
 	WebDriver driver;
+	PageUtility page_utility= new PageUtility();
+	WaitUtility wait_utility= new WaitUtility();
+	
+	
 	@FindBy(xpath = "//i[@class='fa fa-book font-16']")
 	WebElement notePageField;
 
@@ -38,7 +43,8 @@ public class QALegend_NotesPage {
 	@FindBy(id = "ajaxModalTitle")
 	WebElement titleOfAddNote;
 	
-	@FindBy(xpath = "//table//tr//td//a[text()='selenium testng1860']")
+	
+	@FindBy(xpath = "(//tr[@role='row']//child::td)[2]")
 	WebElement assertionForTitle;
 
 	public QALegend_NotesPage(WebDriver driver) {
@@ -49,22 +55,22 @@ public class QALegend_NotesPage {
 	
 	public void onClickNotes()
 	{
-		PageUtility.clickOnElement(notePageField);
+		page_utility.clickOnElement(notePageField);
 	}
 	
 	public void onClickAddNotes() {
-		PageUtility.clickOnElement(addnotePageField);
+		page_utility.clickOnElement(addnotePageField);
 	}
 	
 	
 	public void inputAddNotesTitle(String title) {
 		// TODO Auto-generated method stub
-		PageUtility.enterText(titlefield, title);
+		page_utility.enterText(titlefield, title);
 	}
 	
 	public void inputAddNotesDescription(String description) {
 		// TODO Auto-generated method stub
-		PageUtility.enterText(descriptionfield, description);
+		page_utility.enterText(descriptionfield, description);
 	}
 	
 //	public void addNoteScrollPage() {
@@ -80,7 +86,7 @@ public class QALegend_NotesPage {
 	
 	public void onClickAddNoteSaveButton()
 	{
-		PageUtility.doubleClick(driver, savebuttonfield);
+		page_utility.doubleClick(driver, savebuttonfield);
 	}
 	
 	public String titleOfAddNote()
@@ -88,8 +94,9 @@ public class QALegend_NotesPage {
 		return titleOfAddNote.getText();
 	}
 	
-	public boolean assertionForTitle()
+	public boolean assertionForNoteTitle()
 	{
+		wait_utility.waitForAnElementToBeVisible(driver, assertionForTitle);
 		return assertionForTitle.isDisplayed();
 	}
 }

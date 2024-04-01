@@ -2,12 +2,12 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-02-08T23:54:20 IST" name="Suite" finished-at="2024-02-08T23:54:42 IST" duration-ms="21568">
+  <suite started-at="2024-04-01T11:32:02 IST" name="Suite" finished-at="2024-04-01T11:32:18 IST" duration-ms="15859">
     <groups>
     </groups>
-    <test started-at="2024-02-08T23:54:20 IST" name="Test" finished-at="2024-02-08T23:54:42 IST" duration-ms="21568">
+    <test started-at="2024-04-01T11:32:02 IST" name="Test" finished-at="2024-04-01T11:32:18 IST" duration-ms="15859">
       <class name="TestCases.QALegendTestCases">
-        <test-method is-config="true" signature="initilization(java.lang.String)[pri:0, instance:TestCases.QALegendTestCases@611889f4]" started-at="2024-02-08T23:54:20 IST" name="initilization" finished-at="2024-02-08T23:54:36 IST" duration-ms="16022" status="PASS">
+        <test-method is-config="true" signature="initilization(java.lang.String)[pri:0, instance:TestCases.QALegendTestCases@611889f4]" started-at="2024-04-01T11:32:02 IST" name="initilization" finished-at="2024-04-01T11:32:11 IST" duration-ms="8877" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -18,10 +18,10 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initilization -->
-        <test-method signature="editAnnouncement()[pri:0, instance:TestCases.QALegendTestCases@611889f4]" started-at="2024-02-08T23:54:36 IST" name="editAnnouncement" finished-at="2024-02-08T23:54:42 IST" duration-ms="5472" status="PASS">
+        <test-method signature="addTimeManually()[pri:0, instance:TestCases.QALegendTestCases@611889f4]" started-at="2024-04-01T11:32:11 IST" name="addTimeManually" finished-at="2024-04-01T11:32:18 IST" duration-ms="6926" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- editAnnouncement -->
+        </test-method> <!-- addTimeManually -->
       </class> <!-- TestCases.QALegendTestCases -->
     </test> <!-- Test -->
   </suite> <!-- Suite -->

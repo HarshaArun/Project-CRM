@@ -12,6 +12,8 @@ import net.bytebuddy.asm.Advice.This;
 public class QALegend_Messages {
 
 	WebDriver driver;
+	PageUtility page_utility= new PageUtility();
+	WaitUtility wait_utility = new WaitUtility();
 	
 	@FindBy(xpath ="//span[text()='Messages']")
 	 WebElement messagesPageField;
@@ -33,7 +35,12 @@ public class QALegend_Messages {
 	 
 	 @FindBy(xpath = "//button[@type='submit']")
 	 WebElement saveCompose;
+	 
+	 @FindBy(xpath = "//a[text()='Sent items']")
+	 WebElement sentItemsField;
 	
+	 @FindBy(xpath = "(//div[@class='media-body'])[1]")
+	 WebElement assertSentMessageField;
 	 public QALegend_Messages(WebDriver driver) {
 		// TODO Auto-generated constructor stub
 		 this.driver=driver;
@@ -42,38 +49,48 @@ public class QALegend_Messages {
 		 
 	public void onClickmessagesPage()
 	{
-		PageUtility.clickUsingJavaScript(messagesPageField, driver);
+		page_utility.clickUsingJavaScript(messagesPageField, driver);
 	}
 	
 	public void onClickcomposePage()
 	{
-		PageUtility.clickUsingJavaScript(composePageField, driver);
+		page_utility.clickUsingJavaScript(composePageField, driver);
 	}
 	
 	public void onClickDropDownMessageTo()
 	{
 		
-		WaitUtility.waitForAnElementToBeClickable(driver, dropDownMessageToField);
-		PageUtility.clickOnElement(dropDownMessageToField);
+		wait_utility.waitForAnElementToBeClickable(driver, dropDownMessageToField);
+		page_utility.clickOnElement(dropDownMessageToField);
 	}
 	
 	public void onClickSelectMessageTo()
 	{
-		PageUtility.clickOnElement(selectMessageToField);
+		page_utility.clickOnElement(selectMessageToField);
 	}
 	
 	public void inputSubject(String subject)
 	{
-		PageUtility.enterText(subjectField, subject);
+		page_utility.enterText(subjectField, subject);
 	}
 	
 	public void inputWriteMessage(String writemessage)
 	{
-		PageUtility.enterText(writeMessageField, writemessage);
+		page_utility.enterText(writeMessageField, writemessage);
 	}
 	
 	public void onClickSaveCompose()
 	{
-		PageUtility.clickOnElement(saveCompose);
+		page_utility.clickOnElement(saveCompose);
+	}
+	
+	public void onClickSentItems()
+	{
+		page_utility.clickUsingJavaScript(sentItemsField, driver);
+	}
+	
+	public boolean assertSentMessage()
+	{
+		return assertSentMessageField.isDisplayed();
 	}
 }

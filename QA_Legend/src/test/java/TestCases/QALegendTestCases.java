@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.Properties;
 
+import org.checkerframework.checker.units.qual.A;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -43,13 +44,15 @@ public class QALegendTestCases  extends BaseClass{
   QALegend_TeamMembers teammembers;
   QALegend_AnnouncementPage announcementpage;
   QALegend_Messages messagespage;
+  ExcelUtilities excel_utility;
+  FakerUtility faker_utility;
   
   @BeforeMethod
   @Parameters({"Browser"})
   public void initilization(String browser) throws Exception
   {
 	 driver= browserInitilization(browser);
-	 fis=new FileInputStream(System.getProperty("user.dir")+"\\src\\main\\java\\TestData\\testdata.properties");
+	 fis=new FileInputStream(System.getProperty("user.dir")+"\\src\\test\\resources\\TestData\\testdata.properties");
 	 prop=new Properties();
 	 prop.load(fis);
 	 driver.get(prop.getProperty("url"));
@@ -64,11 +67,8 @@ public class QALegendTestCases  extends BaseClass{
 	 teammembers=new QALegend_TeamMembers(driver);
 	 announcementpage=new QALegend_AnnouncementPage(driver);
 	 messagespage=new QALegend_Messages(driver);
-	 
-	 loginpage.enterUserName(prop.getProperty("username"));
-	 loginpage.enterPassword(prop.getProperty("password"));
-	 loginpage.onClickLogin();
-	  
+	 excel_utility= new ExcelUtilities();
+	 faker_utility= new FakerUtility();
 	   }
   
 //  @AfterMethod
@@ -80,10 +80,8 @@ public class QALegendTestCases  extends BaseClass{
   @Test (priority = 1)
   public void loginCRM() 
   {
-	  homepage.logOut();
-	  loginpage.enterUserName(prop.getProperty("username"));
-	  loginpage.enterPassword(prop.getProperty("password"));
-	  loginpage.onClickLogin();
+	  loginpage.logInToTheApplication(prop.getProperty("username"), prop.getProperty("password"));
+	 
 	  String expectuser=homepage.getUserProfileName();
 	  String actualuser=prop.getProperty("user_profile_name");
 	  System.out.println(expectuser);
@@ -96,33 +94,35 @@ public class QALegendTestCases  extends BaseClass{
 //  @Test (priority = 3)
   public void addNotes() throws IOException
   {
+	  loginpage.logInToTheApplication(prop.getProperty("username"), prop.getProperty("password"));
 	  notespage.onClickNotes();
 	  notespage.onClickAddNotes();  
 	//  notespage.enterAddNotesTitle(prop.getProperty("addnote_title"));
 	//  notespage.enterAddNotesDescription(prop.getProperty("addnote_description"));
-	 	String notes_title=ExcelUtilities.getString(1, 0, excelFilePath, "Notes") +FakerUtility.randomNumberCreation();
+	 	String notes_title=excel_utility.getString(1, 0, excelFilePath, "Notes") + faker_utility.randomNumberCreation();
 	  	notespage.inputAddNotesTitle(notes_title);	
-	  	String notes_description=ExcelUtilities.getString(1, 1, excelFilePath, "Notes");
+	  	String notes_description=excel_utility.getString(1, 1, excelFilePath, "Notes");
 	  	notespage.inputAddNotesDescription(notes_description);
 //	  	notespage.onClickAddNotesLabels();
 	  	notespage.onClickAddNoteSaveButton();
 	  	Assert.assertEquals(notespage.titleOfAddNote(),prop.getProperty("addnote_pagetitle"));
-	  	Assert.assertEquals(notespage.assertionForTitle(), true);
+	  	Assert.assertEquals(notespage.assertionForNoteTitle(), true);
 	  
   }
  
   
-// @Test
+ //@Test
  public void addProjects() throws IOException
  {
+	 loginpage.logInToTheApplication(prop.getProperty("username"), prop.getProperty("password"));
 	 projectspage.onClickProjects();
 	 projectspage.onClickAllProjects();
 	 projectspage.onClickAddProjects();
 	 
-	 String projects_title=ExcelUtilities.getString(1, 2, excelFilePath, "Notes")+FakerUtility.randomNumberCreation();
+	 String projects_title=excel_utility.getString(1, 2, excelFilePath, "Notes")+ faker_utility.randomNumberCreation();
 	 projectspage.inputProjectTitle(projects_title);
 	 
-	 String project_description= ExcelUtilities.getString(1, 3, excelFilePath, "Notes");
+	 String project_description= excel_utility.getString(1, 3, excelFilePath, "Notes");
 	 projectspage.inputProjectDescription(project_description);
 	 projectspage.inputProjectClient();
 	 projectspage.onClickSaveProject();
@@ -134,32 +134,39 @@ public class QALegendTestCases  extends BaseClass{
 //@Test
 public void composeMessage() throws IOException
 {
+	loginpage.logInToTheApplication(prop.getProperty("username"), prop.getProperty("password"));
 	messagespage.onClickmessagesPage();
 	messagespage.onClickcomposePage();
 	messagespage.onClickDropDownMessageTo();
 	messagespage.onClickSelectMessageTo();
-	String messages_subject=ExcelUtilities.getString(19, 0, excelFilePath, "Notes")+FakerUtility.randomNumberCreation();
+	String messages_subject=excel_utility.getString(19, 0, excelFilePath, "Notes")+ faker_utility.randomNumberCreation();
 	messagespage.inputSubject(messages_subject);
-	String messages_writemessage=ExcelUtilities.getString(19, 1, excelFilePath, "Notes");
+	String messages_writemessage=excel_utility.getString(19, 1, excelFilePath, "Notes");
 	messagespage.inputWriteMessage(messages_writemessage);
 	messagespage.onClickSaveCompose();
+	messagespage.onClickSentItems();
+	Assert.assertEquals(messagespage.assertSentMessage(), true);
 	}
  
+
 // @Test
  	public void applyLeave() throws IOException
  	{
+ 	 loginpage.logInToTheApplication(prop.getProperty("username"), prop.getProperty("password"));
 	 leavepage.onClickLeavePage();
 	 leavepage.onClickApplyLeavePage();
 	 leavepage.onClickdropDownApplyLeave();
 	 leavepage.onClickapplyLeaveType();
 	 leavepage.onClickApplyLeaveDuration();
 	 leavepage.onClickLeaveDurationButton();
-	 String leave_date=ExcelUtilities.getDateValue(4, 1, excelFilePath, "Notes");
+	 String leave_date=excel_utility.getDateValue(4, 1, excelFilePath, "Notes");
 	 leavepage.inputApplyLeaveDate(leave_date);
-	 String leave_reason= ExcelUtilities.getString(4, 0, excelFilePath, "Notes");
+	 String leave_reason= excel_utility.getString(4, 0, excelFilePath, "Notes");
 	  leavepage.inputApplyLeaveReason(leave_reason);
 	 leavepage.onClickSaveApplyLeave();
+	 leavepage.onClickLeavePageCount();
 	 Assert.assertEquals(leavepage.titleOfApplyLeave(), prop.getProperty("addleave"));
+	 Assert.assertEquals(leavepage.AssertLeaveType(),true);
  	}
  	
  	
@@ -168,27 +175,28 @@ public void composeMessage() throws IOException
 // @Test
  public void addItems() throws IOException
  {
-	 
+	 loginpage.logInToTheApplication(prop.getProperty("username"), prop.getProperty("password"));
 	 itemspage.onClickItemsPage();
 	 itemspage.onClickAddItem();
-	 String item_title= ExcelUtilities.getString(4, 2, excelFilePath, "Notes") + FakerUtility.randomNumberCreation();
+	 String item_title= excel_utility.getString(4, 2, excelFilePath, "Notes") + faker_utility.randomNumberCreation();
 	 itemspage.inputItemTitle(item_title);
-	 String item_description= ExcelUtilities.getString(4, 3, excelFilePath, "Notes") ;
+	 String item_description= excel_utility.getString(4, 3, excelFilePath, "Notes") ;
 	 itemspage.inputItemDescription(item_description);
-	 String item_unittype= ExcelUtilities.getNumeric(4, 4, excelFilePath, "Notes") ;
+	 String item_unittype= excel_utility.getNumeric(4, 4, excelFilePath, "Notes") ;
 	 itemspage.inputUnitType(item_unittype);
-	 String item_rate= ExcelUtilities.getNumeric(4, 5, excelFilePath, "Notes") ;
+	 String item_rate= excel_utility.getNumeric(4, 5, excelFilePath, "Notes") ;
 	 itemspage.inputItemRate(item_rate);
 	 itemspage.onClickSaveAddItem();
 	 Assert.assertEquals(itemspage.titleOfItem(), prop.getProperty("additem_pagetitle"));
-//	 Assert.assertEquals(itemspage.valueDisplay(), true);
+	 Assert.assertEquals(itemspage.valueDisplay(), true);
 	 
  }
  
  
-// @Test
+ @Test
  public void addTimeManually() throws IOException
  {
+	 loginpage.logInToTheApplication(prop.getProperty("username"), prop.getProperty("password"));
 	 timecardspage.onClickTimeCards();
 	 timecardspage.onClickAddTimeManually();
 	 timecardspage.onClickDropDownTeamMember();
@@ -201,28 +209,32 @@ public void composeMessage() throws IOException
 	 
 	 timecardspage.onClickInTime();
 //	 timecardspage.clearInTime();
-	 String timecard_intime=ExcelUtilities.getString(16, 0,excelFilePath, "Notes");
+	 String timecard_intime=excel_utility.getString(16, 0,excelFilePath, "Notes");
 	 timecardspage.inputInTime(timecard_intime);
 	 timecardspage.onClickOutTime();
-	 String timecard_outtime=ExcelUtilities.getString(16, 2,excelFilePath, "Notes");
+	 String timecard_outtime=excel_utility.getString(16, 2,excelFilePath, "Notes");
 	 timecardspage.inputOutTime(timecard_outtime);
 	 timecardspage.onClickSaveAddTime();
+	 timecardspage.onClickclockInOut();
+	 Assert.assertEquals(timecardspage.assertTeamMember(), true);
 //	 Assert.assertEquals(timecardspage.titleOfAddTimeManually(), prop.getProperty("addtimemanually"));
+	 
  }
  
-// @Test
+ //@Test
  public void addExpenseInFinance() throws IOException
  {
+	 loginpage.logInToTheApplication(prop.getProperty("username"), prop.getProperty("password"));
 	 financepage.onClickFinancePage();
 	 financepage.onClickExpensePage();
 	 financepage.onClickAddExpensePage();
 	 Assert.assertEquals(financepage.addExpenseTitle(),prop.getProperty("addexpense_pagetitle"));
 	 financepage.onClickExpenseCategory();
-	  String finance_amount=ExcelUtilities.getNumeric(13, 2, excelFilePath, "Notes");
+	  String finance_amount=excel_utility.getNumeric(13, 2, excelFilePath, "Notes");
 	  financepage.inputExpenseAmount(finance_amount);
-	  String finance_title=ExcelUtilities.getString(13, 0, excelFilePath, "Notes") +FakerUtility.randomNumberCreation();
+	  String finance_title=excel_utility.getString(13, 0, excelFilePath, "Notes") + faker_utility.randomNumberCreation();
 	  financepage.inputExpenseTitle(finance_title);
-	  String finance_description=ExcelUtilities.getString(13, 1, excelFilePath, "Notes");
+	  String finance_description=excel_utility.getString(13, 1, excelFilePath, "Notes");
 	  financepage.inputExpenseDescription(finance_description);
 //	 financepage.onClickExpenseTax();
 //	 financepage.onClickExpenseTaxFromSelect();
@@ -231,49 +243,52 @@ public void composeMessage() throws IOException
 	  Assert.assertEquals(financepage.titleOfExpense(), true);
  }
  
-// @Test(priority = 2)
+ //@Test(priority = 2)
  public void addTeamMember() throws IOException
  {
+	 loginpage.logInToTheApplication(prop.getProperty("username"), prop.getProperty("password"));
 	 teammembers.onClickTeamMembersPage();
 	 teammembers.onClickAddMember();
-	 String member_firstname= ExcelUtilities.getString(7, 0, excelFilePath, "Notes") ;
+	 String member_firstname= excel_utility.getString(7, 0, excelFilePath, "Notes") ;
 	 teammembers.inputMemberFirstName(member_firstname);
-	 String member_lastname= ExcelUtilities.getString(7, 1, excelFilePath, "Notes") ;
+	 String member_lastname= excel_utility.getString(7, 1, excelFilePath, "Notes") + faker_utility.randomNumberCreation() ;
 	 teammembers.inputMemberLastName(member_lastname);
-	 String member_address= ExcelUtilities.getString(7, 2, excelFilePath, "Notes") ;
+	 String member_address= excel_utility.getString(7, 2, excelFilePath, "Notes") + faker_utility.randomNumberCreation();
 	 teammembers.inputMemberEmailAddress(member_address);
-	 String member_phonenumber= ExcelUtilities.getNumeric(7, 3, excelFilePath, "Notes") ;
+	 String member_phonenumber= excel_utility.getNumeric(7, 3, excelFilePath, "Notes") ;
 	 teammembers.inputMemeberPhoneNum(member_phonenumber);
 	 teammembers.onClickaddMemberNext();
-	 String member_jobtitle= ExcelUtilities.getString(10, 0, excelFilePath, "Notes") ;
+	 String member_jobtitle= excel_utility.getString(10, 0, excelFilePath, "Notes") ;
 	 teammembers.inputMemberJobTitle(member_jobtitle);
-	 String member_salary= ExcelUtilities.getNumeric(10, 1, excelFilePath, "Notes") ;
+	 String member_salary=excel_utility.getNumeric(10, 1, excelFilePath, "Notes") ;
 	 teammembers.inputMemberSalary(member_salary);
-	 String member_salaryterm= ExcelUtilities.getString(10, 2, excelFilePath, "Notes") ;
+	 String member_salaryterm= excel_utility.getString(10, 2, excelFilePath, "Notes") ;
 	 teammembers.inputmemberSalaryTerm(member_salaryterm);
 	 teammembers.onClickaddMemberNextButton();
-	 String member_emailid= ExcelUtilities.getString(10, 3, excelFilePath, "Notes") ;
+	 String member_emailid=excel_utility.getString(10, 3, excelFilePath, "Notes") + faker_utility.randomNumberCreation() ;
 	 teammembers.inputMemberEmailId(member_emailid);
-	 String member_password= ExcelUtilities.getString(10, 4, excelFilePath, "Notes") ;
+	 String member_password= excel_utility.getString(10, 4, excelFilePath, "Notes") ;
 	 teammembers.inputMemberPassword(member_password);
 	 teammembers.onClickSaveMember();
 	 Assert.assertEquals(teammembers.titleOfAddMember(), prop.getProperty("addteammember"));
-//	 Assert.assertEquals(teammembers.titleOfAddMember(), true);
+	 Assert.assertEquals(teammembers.assertionOfMemberName(), true);
  }
  
-@Test  
+//@Test  
 public void editAnnouncement() throws IOException
 {
-	
+	loginpage.logInToTheApplication(prop.getProperty("username"), prop.getProperty("password"));
 	announcementpage.onClickAnnouncementButton();
 	announcementpage.onClickEditButton();
-	String announcement_title=ExcelUtilities.getString(19, 2, excelFilePath, "Notes")+ FakerUtility.randomNumberCreation();
+	String announcement_title=excel_utility.getString(19, 2, excelFilePath, "Notes")+ faker_utility.randomNumberCreation();
 	announcementpage.inputEditTitle(announcement_title);
-	String announcement_text=ExcelUtilities.getString(19, 3, excelFilePath, "Notes")+ FakerUtility.randomNumberCreation();
+	String announcement_text=excel_utility.getString(19, 3, excelFilePath, "Notes")+ faker_utility.randomNumberCreation();
 	announcementpage.inputEditText(announcement_text);
 	announcementpage.onClickSaveEditButton();
 	announcementpage.onClickviewButton();
 	announcementpage.onClickbackToAnnouncements();
+	Assert.assertEquals(announcementpage.announcementCreatedBy(), true);
+			
 }
 
 

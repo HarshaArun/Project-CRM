@@ -14,6 +14,8 @@ public class QALegendLeavePage {
 	
 	
 	WebDriver driver;
+	PageUtility page_utility= new PageUtility();
+	WaitUtility wait_utility = new WaitUtility();
 	
 	@FindBy(xpath = "//i[@class='fa fa-sign-out font-16']//parent::a")
 	WebElement leavePageField;
@@ -47,66 +49,85 @@ public class QALegendLeavePage {
 	
 	@FindBy(id = "ajaxModalTitle")
 	WebElement titleOfApplyLeave;
+	
+	@FindBy(xpath = "//a[text()='18']")
+	WebElement leavePageCountField;
+	
+	@FindBy(xpath = "(//tr[@role='row' and @class='odd']//child::td)[14]")
+	WebElement AssertLeaveTypeField;
+	
+	
 	public QALegendLeavePage(WebDriver driver) {
 		// TODO Auto-generated constructor stub
 		this.driver=driver;
 		PageFactory.initElements(driver, this);
 	}
+	
 
 	public void onClickLeavePage()
 	{
-		PageUtility.doubleClick(driver, leavePageField);
+		page_utility.doubleClick(driver, leavePageField);
 	}
 	
 	 
 	public void onClickApplyLeavePage()
 	{
-		PageUtility.clickOnElement(applyLeaveField);
+		page_utility.clickOnElement(applyLeaveField);
 		
 	}
 	
 	public void onClickdropDownApplyLeave()
 	{
-		PageUtility.clickOnElement(dropDownApplyLeave);
+		page_utility.clickOnElement(dropDownApplyLeave);
 	}
 	
 	public void onClickapplyLeaveType()
 	{
-		PageUtility.clickOnElement(applyLeaveType);
+		page_utility.clickOnElement(applyLeaveType);
 	}
 	
 	public void onClickApplyLeaveDuration() {
-		WaitUtility.waitForAnElementToBeClickable(driver, applyLeaveDurationField);
-		PageUtility.clickOnElement(applyLeaveDurationField);
+		wait_utility.waitForAnElementToBeClickable(driver, applyLeaveDurationField);
+		page_utility.clickOnElement(applyLeaveDurationField);
 	}
 	
 	public void onClickLeaveDurationButton() {
-		WaitUtility.waitForAnElementToBeClickable(driver, applyLeaveDurationField);
-		PageUtility.clickOnElement(leaveDurationButtonField);
+		wait_utility.waitForAnElementToBeClickable(driver, applyLeaveDurationField);
+		page_utility.clickOnElement(leaveDurationButtonField);
 	}
 	
 	public void inputApplyLeaveDate(String date)
 	{
-		PageUtility.enterText(applyLeaveDateField, date);
+		page_utility.enterText(applyLeaveDateField, date);
 	}
 	
 	public void inputApplyLeaveReason(String reason)
 	{
-		PageUtility.enterText(applyLeaveReasonField, reason);
+		page_utility.enterText(applyLeaveReasonField, reason);
 	}
 	
 	public void onClickSaveApplyLeave() {
 	//	WaitUtility.waitForAnElementToBeClickable(driver, applyLeaveDurationField);
-		PageUtility.clickOnElement(saveApplyLeaveField);
+		page_utility.clickOnElement(saveApplyLeaveField);
 	}
 	
 	public void onClickAssignLeavePage()
 	{
-		PageUtility.clickOnElement(assignLeaveField);
+		page_utility.clickOnElement(assignLeaveField);
 	}
 	
 	public String titleOfApplyLeave()
 	{
 		return titleOfApplyLeave.getText();
+	}
+	
+	public void onClickLeavePageCount()
+	{
+		page_utility.clickUsingJavaScript(leavePageCountField, driver);
+	}
+	
+	public boolean AssertLeaveType()
+	{
+		return AssertLeaveTypeField.isDisplayed();
 	}
 }

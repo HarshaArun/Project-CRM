@@ -14,6 +14,8 @@ public class QALegendTimeCardsPage {
 	
 
 	WebDriver driver;
+	PageUtility page_utility= new PageUtility();
+	WaitUtility wait_utility = new WaitUtility();
 	
 	@FindBy(xpath = "//i[@class='fa fa-clock-o font-16']")
 	WebElement timeCardPageField;
@@ -54,6 +56,13 @@ public class QALegendTimeCardsPage {
 	@FindBy(xpath = "ajaxModalTitle")
 	WebElement titleOfAddTimeManually;
 	
+	@FindBy(xpath = "//a[text()='Clock In / Out']")
+//	@FindBy(xpath = "//a[text()='Clock In / Out']//parent::li")
+	WebElement clockInOutField;
+	
+	@FindBy(xpath = "(//tr[@role=\"row\"and@class='even']//child::td)[1]")
+	WebElement  assertTeamMemberField;
+	
 	public QALegendTimeCardsPage(WebDriver driver) {
 		// TODO Auto-generated constructor stub
 		this.driver=driver;
@@ -62,24 +71,24 @@ public class QALegendTimeCardsPage {
 	
 		public void onClickTimeCards()
 		 {
-			 PageUtility.scrollToBottom(driver);
-			 PageUtility.clickUsingJavaScript(timeCardPageField, driver);
+			page_utility.scrollToBottom(driver);
+			page_utility.clickUsingJavaScript(timeCardPageField, driver);
 		 }
 		
 		public void onClickAddTimeManually()
 		 {
-			 PageUtility.clickOnElement(addTimeManuallyField);
+			page_utility.clickOnElement(addTimeManuallyField);
 			
 		 }
 		public void onClickDropDownTeamMember()
 		 {
-			 PageUtility.clickOnElement(dropDownteamMember);
+			page_utility.clickOnElement(dropDownteamMember);
 			 
 		 }
 		public void onClickSelectTeamMember()
 		 {
-			WaitUtility.waitForAnElementToBeClickable(driver,selectTeamMember);
-		    PageUtility.clickOnElement(selectTeamMember);	
+			wait_utility.waitForAnElementToBeClickable(driver,selectTeamMember);
+			page_utility.clickOnElement(selectTeamMember);	
 			
 		 }
 		
@@ -87,44 +96,44 @@ public class QALegendTimeCardsPage {
 		
 		public void onClickInDate()
 		 {
-			 PageUtility.clickOnElement(inDateField);
+			page_utility.clickOnElement(inDateField);
 			 
 		 }
 		
 		public void onClickInCalendar()
 		 {
-			 PageUtility.clickOnElement(inCalendarField);
+			page_utility.clickOnElement(inCalendarField);
 			 
 		 }
 		
 		public void onClickOutDate()
 		 {
-			 PageUtility.clickOnElement(outDateField);
+			page_utility.clickOnElement(outDateField);
 			 
 		 }
 		
 		public void onClickOutCalendar()
 		 {
-			 PageUtility.clickOnElement(outCalendarField);
+			page_utility.clickOnElement(outCalendarField);
 			 
 		 }
 		
 		public void onClickSelectOutDate()
 		 {
-			 PageUtility.clickOnElement(selectOutDateField);
+			page_utility.clickOnElement(selectOutDateField);
 			 
 		 }
 		
 		public void inputOutDate(String outdate)
 		 {
-			PageUtility.clearText(outDateField);
-			 PageUtility.enterText(outDateField, outdate);
+			page_utility.clearText(outDateField);
+			page_utility.enterText(outDateField, outdate);
 			 
 		 }
 		
 		public void onClickInTime()
 		 {
-			 PageUtility.clickUsingJavaScript(inTimeField, driver);
+			page_utility.clickUsingJavaScript(inTimeField, driver);
 			 
 		 }
 		
@@ -135,32 +144,37 @@ public class QALegendTimeCardsPage {
 		
 		public void inputInTime(String intime)
 		 {
-			PageUtility.clearText(inTimeField);
-			 PageUtility.enterText(inTimeField, intime);
+			page_utility.clearText(inTimeField);
+			page_utility.enterText(inTimeField, intime);
 			 
 		 }
 		
 		public void onClickOutTime()
 		 {
-			 PageUtility.clickUsingJavaScript(outTimeField, driver);
+			page_utility.clickUsingJavaScript(outTimeField, driver);
 			 
 		 }
 		
 		public void inputOutTime(String outtime)
 		 {
-			PageUtility.clearText(outTimeField);
-			 PageUtility.enterText(outTimeField, outtime);
+			page_utility.clearText(outTimeField);
+			page_utility.enterText(outTimeField, outtime);
 			 
 		 }
 		
 		public void onClickSaveAddTime()
 		 {
-			 PageUtility.clickUsingJavaScript(saveAddTimeField, driver);
+			page_utility.clickUsingJavaScript(saveAddTimeField, driver);
 			 
 		 }
 		
-//		public String titleOfAddTimeManually()
-//		{
-//			return titleOfAddTimeManually.getText();
-//		}
+		public void onClickclockInOut()
+		{
+			page_utility.clickUsingJavaScript(clockInOutField, driver);
+		}
+		
+		public boolean assertTeamMember()
+	   {
+			return assertTeamMemberField.isDisplayed();
+		}
 }

@@ -13,6 +13,9 @@ public class QALegend_TeamMembers {
 
 	
 	WebDriver driver;
+	PageUtility page_utility= new PageUtility();
+	WaitUtility wait_utility = new WaitUtility();
+	
 	@FindBy(xpath = "//span[text()='Team members']")
 	WebElement teamMembersPageField;
 	
@@ -64,7 +67,8 @@ public class QALegend_TeamMembers {
 	@FindBy(id = "ajaxModalTitle")
 	WebElement titleOfAddMember;
 	
-	@FindBy(xpath = "//table//tbody//tr//td//a[text()='Harsha Arun ']")
+//	@FindBy(xpath = "//table//tbody//tr//td//a[text()='Harsha Arun ']")
+	@FindBy(xpath = "(//tr[@role='row'and@class='even']//child::td)[2]")  
 	WebElement assertionOfMemberName;
 	
 	public QALegend_TeamMembers(WebDriver driver) {
@@ -76,78 +80,78 @@ public class QALegend_TeamMembers {
 	
 	public void onClickTeamMembersPage()
 	 {
-		 PageUtility.clickUsingJavaScript(teamMembersPageField, driver);
+		page_utility.clickUsingJavaScript(teamMembersPageField, driver);
 	 }
 	
 	public void onClickAddMember()
 	 {
-		 PageUtility.clickUsingJavaScript(addMemberField, driver);
+		page_utility.clickUsingJavaScript(addMemberField, driver);
 	 }
 	
 	public void inputMemberFirstName(String firstname)
 	 {
-		 PageUtility.enterText(memberFirstNameField,  firstname);
+		page_utility.enterText(memberFirstNameField,  firstname);
 	 }
 	
 	public void inputMemberLastName(String lastname)
 	 {
-		 PageUtility.enterText(memberLastNameField, lastname);
+		page_utility.enterText(memberLastNameField, lastname);
 	 }
 	
 	public void inputMemberEmailAddress(String emailaddress)
 	 {
-		 PageUtility.enterText(memberEmailAddressField, emailaddress);
+		page_utility.enterText(memberEmailAddressField, emailaddress);
 	 }
 	
 	public void inputMemeberPhoneNum(String phoneNum)
 	 {
-		 PageUtility.enterText(memberPhoneNumField, phoneNum);
+		page_utility.enterText(memberPhoneNumField, phoneNum);
 	 }
 	
 	public void onClickaddMemberNext()
 	 {
-		 WaitUtility.waitForAnElementToBeClickable(driver, addMemeberNextField);
-		 PageUtility.clickUsingJavaScript(addMemeberNextField, driver);
+		wait_utility.waitForAnElementToBeClickable(driver, addMemeberNextField);
+		 page_utility.clickUsingJavaScript(addMemeberNextField, driver);
 	 }
 	
 	public void inputMemberJobTitle(String jobtitle)
 	 {
-		WaitUtility.waitForAnElementToBeVisible(driver, memberJobTitleField);
+		wait_utility.waitForAnElementToBeVisible(driver, memberJobTitleField);
 		// PageUtility.enterText(memberJobTitleField, jobtitle);
-		 PageUtility.enterTextUsingActions(driver, memberJobTitleField, jobtitle);
+		page_utility.enterTextUsingActions(driver, memberJobTitleField, jobtitle);
 		 
 	 }
 	
 	public void inputMemberSalary(String salary)
 	 {
-		 PageUtility.enterText(memberSalaryField, salary);
+		page_utility.enterText(memberSalaryField, salary);
 	 }
 	
 	public void inputmemberSalaryTerm(String salaryterm)
 	 {
-		 PageUtility.enterText(memberSalaryTermField, salaryterm);
+		page_utility.enterText(memberSalaryTermField, salaryterm);
 	 }
 	
 	public void onClickaddMemberNextButton()
 	 {
-		 WaitUtility.waitForAnElementToBeClickable(driver, addMemberNextButtonField);
-		 PageUtility.clickUsingJavaScript(addMemberNextButtonField, driver);
+		wait_utility.waitForAnElementToBeClickable(driver, addMemberNextButtonField);
+		 page_utility.clickUsingJavaScript(addMemberNextButtonField, driver);
 	 }
 	
 	public void inputMemberEmailId(String emailid)
 	 {
-		 PageUtility.enterText(memberEmailField, emailid);
+		page_utility.enterText(memberEmailField, emailid);
 	 }
 	
 	public void inputMemberPassword(String password)
 	 {
-		 PageUtility.enterText(memberPasswordField, password);
+		page_utility.enterText(memberPasswordField, password);
 	 }
 	
 	public void onClickSaveMember()
 	 {
 		
-		 PageUtility.clickUsingJavaScript(saveMemberField, driver);
+		page_utility.clickUsingJavaScript(saveMemberField, driver);
 	 }
 	
 	public String titleOfAddMember()

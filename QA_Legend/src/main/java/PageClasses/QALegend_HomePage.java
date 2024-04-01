@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import Utilities.PageUtility;
+import Utilities.WaitUtility;
 import net.bytebuddy.asm.Advice.This;
 
 public class QALegend_HomePage {
@@ -17,6 +18,8 @@ public class QALegend_HomePage {
 	
 
 	WebDriver driver;
+	PageUtility page_utility = new PageUtility();
+	WaitUtility wait_utility = new WaitUtility();
 	
 	@FindBy(xpath =  "//span[@class='topbar-user-name']")
 	WebElement userprofilename;
@@ -37,16 +40,18 @@ public class QALegend_HomePage {
 	
 	public void logOut() {
 		
-		PageUtility.clickOnElement(userprofilename);
-		PageUtility.clickOnElement(signoutuser);
+		page_utility.clickOnElement(userprofilename);
+		page_utility.clickOnElement(signoutuser);
 	}
 	
 
 	public String getUserProfileName() {
 		
-		WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(3));
-		wait.until(ExpectedConditions.visibilityOf(userprofilename));
-		String userName=PageUtility.getTextFromElement(userprofilename);
+//		WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(3));
+//		wait.until(ExpectedConditions.visibilityOf(userprofilename));
+		
+		wait_utility.waitForAnElementToBeClickable(driver, userprofilename);
+		String userName=page_utility.getTextFromElement(userprofilename);
 		return userName;
 	}
 }

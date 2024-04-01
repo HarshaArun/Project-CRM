@@ -12,6 +12,9 @@ public class QALegend_Items {
 	
 	
 	WebDriver driver;
+	PageUtility page_utility= new PageUtility();
+	WaitUtility wait_utility = new WaitUtility();
+	
 	@FindBy(xpath = "//i[@class='fa fa-list-ul']")
 	WebElement itemsPageField;
 	
@@ -33,7 +36,8 @@ public class QALegend_Items {
 	 @FindBy(xpath  = "//button[text()=' Save']")
 	 WebElement saveItemField;
 	 
-	 @FindBy(xpath = "//tbody//tr//td[@class=' w20p' and text()='Samsung7033']")
+//	 @FindBy(xpath = "//tbody//tr//td[@class=' w20p' and text()='Samsung7033']")
+	 @FindBy(xpath = "(//tr[@role='row']//child::td)[1]")         
 	 WebElement displaySavedItem;
 	 
 	 @FindBy(id = "ajaxModalTitle")
@@ -48,35 +52,35 @@ public class QALegend_Items {
 	
 	public void onClickItemsPage()
 	{
-		PageUtility.clickOnElement(itemsPageField);
+		page_utility.clickOnElement(itemsPageField);
 	}
 	
 	public void onClickAddItem()
 	{
-		PageUtility.clickOnElement(addItemField);
+		page_utility.clickOnElement(addItemField);
 	}
 	
 	public void inputItemTitle(String title) {
 		
-		PageUtility.enterText(ItemTitleField,title );
+		page_utility.enterText(ItemTitleField,title );
 		
 	}
 	
    public void inputItemDescription(String description) {
 		
-		PageUtility.enterText(ItemDescriptionField,description );
+	   page_utility.enterText(ItemDescriptionField,description );
 		
 	}
    
    public void inputUnitType(String unittype) {
 		
-		PageUtility.enterText(ItemUnitTypeField,unittype);
+	   page_utility.enterText(ItemUnitTypeField,unittype);
 		
 	}
    
    public void inputItemRate(String rate) {
 		
-		PageUtility.enterText(ItemRateField,rate);
+	   page_utility.enterText(ItemRateField,rate);
 		
 	}
    
@@ -87,8 +91,8 @@ public class QALegend_Items {
    
    public void onClickSaveAddItem()
 	{
-	   WaitUtility.waitForAnElementToBeClickable(driver, saveItemField);
-		PageUtility.doubleClick(driver, saveItemField);
+	   wait_utility.waitForAnElementToBeClickable(driver, saveItemField);
+	   page_utility.doubleClick(driver, saveItemField);
 	}
    
    public String titleOfItem()

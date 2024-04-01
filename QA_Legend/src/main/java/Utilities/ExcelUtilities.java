@@ -13,7 +13,7 @@ public class ExcelUtilities {
 	public static XSSFWorkbook wb;
 	public static XSSFSheet sh;
 	public static FileInputStream f;
-	public static String getString(int i, int j, String filePath, String sheet) throws IOException
+	public  String getString(int i, int j, String filePath, String sheet) throws IOException
 	{
 		f = new FileInputStream(System.getProperty("user.dir")+ filePath);
 		wb = new XSSFWorkbook(f);
@@ -23,7 +23,7 @@ public class ExcelUtilities {
  
 		return c.getStringCellValue();
 	}
-	public static String getNumeric(int i, int j, String filePath, String sheet) throws IOException
+	public String getNumeric(int i, int j, String filePath, String sheet) throws IOException
 	{
 		f = new FileInputStream(System.getProperty("user.dir")+ filePath);
 		wb = new XSSFWorkbook(f);
@@ -33,7 +33,7 @@ public class ExcelUtilities {
 		int value = (int) c.getNumericCellValue();
 		return String.valueOf(value);
 	}
-	public static String getDateValue(int i, int j, String filePath, String sheet) throws IOException
+	public String getDateValue(int i, int j, String filePath, String sheet) throws IOException
 	{
 		f = new FileInputStream(System.getProperty("user.dir")+ filePath);
 		wb = new XSSFWorkbook(f);

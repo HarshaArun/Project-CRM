@@ -12,6 +12,8 @@ public class QALegend_FinancePage {
 
 
 	WebDriver driver;
+	PageUtility page_utility= new PageUtility();
+	
 	
 	@FindBy(xpath = "//span[text()='Finance']")
 	WebElement financePageField;
@@ -46,7 +48,8 @@ public class QALegend_FinancePage {
 	@FindBy(xpath = "//button[@class='btn btn-primary']")
 	WebElement expenseSaveField;
 	
-	@FindBy(xpath = "//table//tr//td[text()=\"Training792\"]")
+	//@FindBy(xpath = "//table//tr//td[text()=\"Training792\"]")
+	@FindBy(xpath = "(//tr[@role='row' and @class='odd']//child::td)[3]")
 	WebElement titleOfExpense;
 	
 	@FindBy(xpath = "//h4[text()='Add expense']")
@@ -60,39 +63,39 @@ public class QALegend_FinancePage {
 	
 	public void onClickFinancePage()
 	 {
-		 PageUtility.clickOnElement(financePageField);
+		page_utility.clickOnElement(financePageField);
 	 }
 	
 	public void onClickExpensePage()
 	 {
-		 PageUtility.clickOnElement(expensePageField);
+		page_utility.clickOnElement(expensePageField);
 	 }
 	
 	public void onClickAddExpensePage()
 	 {
-		 PageUtility.clickOnElement(addExpenseField);
+		page_utility.clickOnElement(addExpenseField);
 		
 	 }
 	
 	public void onClickExpenseCategory()
 	 {
 		
-		 PageUtility.clickUsingJavaScript(expenseCategoryField, driver);
+		page_utility.clickUsingJavaScript(expenseCategoryField, driver);
 	 }
 	
 	public void inputExpenseAmount(String amount)
 	 {
-		 PageUtility.enterText(expenseAmountField, amount);
+		page_utility.enterText(expenseAmountField, amount);
 	 }
 	
 	public void inputExpenseTitle(String title)
 	 {
-		 PageUtility.enterText(expenseTitleField, title);
+		page_utility.enterText(expenseTitleField, title);
 	 }
 	
 	public void inputExpenseDescription(String description)
 	 {
-		 PageUtility.enterText(expensedescriptionField, description);
+		page_utility.enterText(expensedescriptionField, description);
 	 }
 	
 	public boolean titleOfExpense()
@@ -105,22 +108,22 @@ public class QALegend_FinancePage {
 	public void onClickExpenseTax()
 	 {
 	//	WaitUtility.waitForAnElementToBeClickable(driver, expenseTaxField);
-		 PageUtility.scrollToElement(expenseTaxField, driver);
-		 PageUtility.clickUsingJavaScript(expenseTaxField, driver);
+		page_utility.scrollToElement(expenseTaxField, driver);
+		page_utility.clickUsingJavaScript(expenseTaxField, driver);
 	 }
 	
 	public void onClickExpenseTaxFromSelect()
 	 {
 		
 	//	 PageUtility.scrollToElement(expenseScrollBar, driver);
-		 PageUtility.clickUsingJavaScript(expenseTaxField, driver);
+		page_utility.clickUsingJavaScript(expenseTaxField, driver);
 	 }
 	
 	public void onClickSaveExpense()
 	 {
 	//	WaitUtility.waitForAnElementToBeClickable(driver, expenseSaveField);
-		 PageUtility.scrollToElement(expenseSaveField, driver);
-		 PageUtility.clickUsingJavaScript(expenseSaveField, driver);
+		page_utility.scrollToElement(expenseSaveField, driver);
+		page_utility.clickUsingJavaScript(expenseSaveField, driver);
 	 }
 	
 	public String addExpenseTitle()

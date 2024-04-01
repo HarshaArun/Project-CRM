@@ -9,8 +9,8 @@
     <classes>
       <class name="TestCases.QALegendTestCases">
         <methods>
-          <include name="editAnnouncement"/>
           <include name="initilization"/>
+          <include name="addTeamMember"/>
         </methods>
       </class> <!-- TestCases.QALegendTestCases -->
     </classes>

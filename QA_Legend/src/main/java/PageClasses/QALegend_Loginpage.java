@@ -13,8 +13,9 @@ public class QALegend_Loginpage {
 
 	
 	WebDriver driver;
+	PageUtility page_utility= new PageUtility();
 	
-	@FindBy(id = "email")
+	@FindBy(id   ="email")
 	WebElement usernamefield;
 	
 	@FindBy(id = "password")
@@ -31,21 +32,25 @@ public class QALegend_Loginpage {
 		PageFactory.initElements(driver, this);
 	}
 
-
+	public void logInToTheApplication(String username, String password) {
+		enterUserName(username);
+		enterPassword(password);
+		 onClickLogin();
+	}
 	public void enterUserName(String username)
 	{
-		PageUtility.enterText(usernamefield, username);
+		page_utility.enterText(usernamefield, username);
 	}
 	
 	
 	public void enterPassword(String password)
 	{
-		PageUtility.enterText(passwordfield, password);
+		page_utility.enterText(passwordfield, password);
 	}
 	
 	public void onClickLogin()
 	{
-		PageUtility.clickOnElement(loginfield);
+		page_utility.clickOnElement(loginfield);
 	}
 	
 }

@@ -10,7 +10,9 @@ import Utilities.WaitUtility;
 
 public class QALegend_AnnouncementPage {
  
-WebDriver driver;
+	WebDriver driver;
+	PageUtility page_utility = new PageUtility();
+
 	@FindBy(xpath = "//span[text()='Announcements']")
 	WebElement announcementPageField;
 	
@@ -38,6 +40,10 @@ WebDriver driver;
 	@FindBy(xpath = "//a[text()='Announcements']")
 	WebElement backToAnnouncements;
 	
+	@FindBy(xpath = "(//tr[@role='row'and@class='odd']//child::td)[2]")
+	WebElement announcementCreatedByField;
+	
+	
 	public QALegend_AnnouncementPage(WebDriver driver) {
 		// TODO Auto-generated constructor stub
 		this.driver=driver;
@@ -46,40 +52,46 @@ WebDriver driver;
 	
 	public void onClickAnnouncementButton()
 	{
-		PageUtility.scrollToBottom(driver);
-		PageUtility.clickUsingJavaScript(announcementPageField, driver);
+		page_utility.scrollToBottom(driver);
+		page_utility.clickUsingJavaScript(announcementPageField, driver);
 	}
 	
 	public void onClickEditButton()
 	{
-		PageUtility.clickOnElement(editButtonField);
+		page_utility.clickOnElement(editButtonField);
 	}
 	
 	
 	public void inputEditTitle(String edittitle)
 	{
-		PageUtility.clearText(editTitleField);
-		PageUtility.enterText(editTitleField, edittitle);
+		page_utility.clearText(editTitleField);
+		page_utility.enterText(editTitleField, edittitle);
 	}
 	
 	public void inputEditText(String edittext)
 	{
-		PageUtility.clearText(editTextField);
-		PageUtility.enterText(editTextField, edittext);
+		page_utility.clearText(editTextField);
+		page_utility.enterText(editTextField, edittext);
 	}
 	
 	public void onClickSaveEditButton()
 	{
-		PageUtility.clickUsingJavaScript(saveEditButton, driver);
+		page_utility.clickUsingJavaScript(saveEditButton, driver);
 	}
 	
 	public void onClickviewButton()
 	{
-		PageUtility.clickOnElement(viewButtonField);
+		page_utility.clickOnElement(viewButtonField);
 	}
 	
 	public void onClickbackToAnnouncements()
 	{
-		PageUtility.clickOnElement(backToAnnouncements);
+		page_utility.clickOnElement(backToAnnouncements);
+	}
+	
+	public boolean announcementCreatedBy()
+	{
+		return announcementCreatedByField.isDisplayed();
+		
 	}
 }
